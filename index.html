@@ -5,233 +5,724 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Maria's Beauty Parlour | Hair & Skin Care | Karachi</title>
   <meta name="description" content="Experience luxury beauty services in Karachi. Professional hair, bridal makeup, skincare & more at Maria's Beauty Parlour. Book your appointment today.">
-  <meta name="keywords" content="beauty salon Karachi, bridal makeup, hair styling, skincare, Maria's Beauty Parlour">
-  <!-- Google Fonts & Tailwind + FontAwesome -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    * { scroll-behavior: smooth; }
-    body { font-family: 'Inter', sans-serif; background: #fffaf7; }
-    h1, h2, h3, .font-serif { font-family: 'Playfair Display', serif; }
-    .bg-soft-blush { background-color: #fff1ef; }
-    .text-gold { color: #c4a27a; }
-    .border-gold { border-color: #c4a27a; }
-    .btn-primary { background: #c4a27a; color: white; padding: 0.75rem 1.8rem; border-radius: 40px; font-weight: 500; transition: 0.2s; display: inline-flex; align-items: center; gap: 8px; border: 1px solid transparent; }
-    .btn-primary:hover { background: #b28b60; transform: scale(1.02); box-shadow: 0 8px 18px rgba(196,162,122,0.3); }
-    .btn-outline { background: transparent; border: 1.5px solid #c4a27a; color: #c4a27a; padding: 0.7rem 1.5rem; border-radius: 40px; font-weight: 500; transition: 0.2s; }
-    .btn-outline:hover { background: #c4a27a; color: white; }
-    .floating-wa { position: fixed; bottom: 24px; right: 24px; z-index: 50; background: #25D366; width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: 0.2s; }
-    .floating-wa:hover { transform: scale(1.05); background: #20b95a; }
-    input, select, textarea { border: 1px solid #f0e0d4; border-radius: 28px; padding: 12px 18px; width: 100%; outline: none; transition: 0.2s; background: white; }
-    input:focus, select:focus, textarea:focus { border-color: #c4a27a; box-shadow: 0 0 0 3px rgba(196,162,122,0.2); }
-    .testimonial-card { background: white; border-radius: 28px; padding: 1.8rem; box-shadow: 0 8px 24px rgba(0,0,0,0.03); transition: 0.2s; }
-    .testimonial-card:hover { box-shadow: 0 20px 30px -12px rgba(0,0,0,0.08); transform: translateY(-3px); }
-    .star-rating { color: #f5b342; letter-spacing: 2px; }
-    .sticky-nav { backdrop-filter: blur(12px); background: rgba(255, 250, 245, 0.95); transition: all 0.2s; box-shadow: 0 2px 15px rgba(0,0,0,0.03); }
-    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; cursor: pointer; }
-    .modal img { max-width: 90%; max-height: 90%; object-fit: contain; border-radius: 12px; }
-    .close-modal { position: absolute; top: 20px; right: 35px; color: white; font-size: 40px; font-weight: bold; cursor: pointer; }
-    .service-card { transition: all 0.3s ease; }
-    .service-card:hover { transform: translateY(-6px); box-shadow: 0 25px 35px -12px rgba(0,0,0,0.15); }
-    @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-    .animate-fade-up { animation: fadeInUp 0.7s ease forwards; }
-    .testimonial-slider { display: flex; overflow-x: auto; gap: 1.5rem; padding-bottom: 1rem; scrollbar-width: thin; scroll-snap-type: x mandatory; }
-    .testimonial-slider::-webkit-scrollbar { height: 5px; }
-    .testimonial-slider::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
-    .testimonial-slider::-webkit-scrollbar-thumb { background: #c4a27a; border-radius: 10px; }
-    .testimonial-card { flex: 0 0 300px; scroll-snap-align: start; }
-    @media (min-width: 768px) { .testimonial-card { flex: 0 0 350px; } }
-    .gallery-img { cursor: pointer; transition: 0.3s; border-radius: 16px; }
-    .gallery-img:hover { transform: scale(1.02); opacity: 0.9; box-shadow: 0 12px 24px rgba(0,0,0,0.15); }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    :root {
+      --gold:#c4a27a; --gold-dark:#a8834e; --gold-light:#e8d5be;
+      --blush:#fff1ef; --cream:#fffaf7; --rose:#f9e8e4;
+      --charcoal:#2a2420; --text:#3d3530; --text-muted:#8a7e76;
+      --white:#ffffff;
+      --shadow-sm:0 2px 8px rgba(42,36,32,0.04);
+      --shadow-md:0 8px 24px rgba(42,36,32,0.06);
+      --shadow-lg:0 20px 40px rgba(42,36,32,0.1);
+      --shadow-xl:0 32px 64px rgba(42,36,32,0.12);
+      --radius:20px; --radius-lg:32px;
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:'DM Sans',-apple-system,sans-serif;background:var(--cream);color:var(--text);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+    h1,h2,h3,h4,.serif{font-family:'Cormorant Garamond',Georgia,serif}
+    img{display:block;max-width:100%;height:auto}
+    a{text-decoration:none;color:inherit}
+    button{cursor:pointer;border:none;font-family:inherit}
+    .container{max-width:1200px;margin:0 auto;padding:0 24px}
+
+    /* ── Loader ── */
+    #loading{position:fixed;inset:0;z-index:10000;background:var(--cream);display:flex;align-items:center;justify-content:center;transition:opacity .6s,visibility .6s}
+    #loading.hidden{opacity:0;visibility:hidden;pointer-events:none}
+    .loader-ring{width:48px;height:48px;border:3px solid var(--gold-light);border-top-color:var(--gold);border-radius:50%;animation:spin .8s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .loader-text{margin-top:20px;font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:var(--gold);letter-spacing:.15em;text-transform:uppercase}
+
+    /* ── Nav ── */
+    .nav{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);background:rgba(255,250,247,.88);border-bottom:1px solid rgba(196,162,122,.08);transition:box-shadow .3s}
+    .nav.scrolled{box-shadow:0 4px 30px rgba(42,36,32,.06)}
+    .nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:72px}
+    .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:600;color:var(--charcoal);letter-spacing:-.02em}
+    .nav-logo span{color:var(--gold)}
+    .nav-links{display:flex;gap:32px;align-items:center}
+    .nav-links a{font-size:.9rem;font-weight:500;color:var(--text-muted);transition:color .2s;position:relative;letter-spacing:.02em}
+    .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1.5px;background:var(--gold);transition:width .3s}
+    .nav-links a:hover{color:var(--gold)}
+    .nav-links a:hover::after{width:100%}
+    .nav-actions{display:flex;gap:12px;align-items:center}
+    .btn-nav-call{padding:8px 20px;border-radius:40px;font-size:.85rem;font-weight:500;border:1.5px solid var(--gold);color:var(--gold);transition:all .25s}
+    .btn-nav-call:hover{background:var(--gold);color:var(--white)}
+    .btn-book{padding:10px 24px;border-radius:40px;font-size:.85rem;font-weight:600;background:var(--gold);color:var(--white);transition:all .25s;letter-spacing:.02em}
+    .btn-book:hover{background:var(--gold-dark);box-shadow:0 8px 20px rgba(196,162,122,.35);transform:translateY(-1px)}
+    .hamburger{display:none;background:none;border:none;font-size:1.5rem;color:var(--gold);cursor:pointer}
+    .mobile-menu{display:none;position:absolute;top:72px;left:0;right:0;background:rgba(255,250,247,.97);backdrop-filter:blur(20px);padding:16px 24px 24px;border-bottom:1px solid var(--rose);box-shadow:0 20px 40px rgba(0,0,0,.06)}
+    .mobile-menu.open{display:flex;flex-direction:column;gap:4px}
+    .mobile-menu a{padding:12px 16px;border-radius:12px;font-weight:500;color:var(--text);transition:background .2s}
+    .mobile-menu a:hover{background:var(--blush);color:var(--gold)}
+    @media(max-width:768px){.nav-links,.btn-nav-call{display:none}.hamburger{display:block}}
+
+    /* ── Hero ── */
+    .hero{position:relative;min-height:92vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#1a1410}
+    .hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1920&q=80') center 35%/cover no-repeat}
+    .hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(26,20,16,.35) 0%,rgba(26,20,16,.55) 100%)}
+    .hero-content{position:relative;z-index:2;text-align:center;padding:40px 24px;max-width:800px}
+    .hero-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 20px;border-radius:40px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);font-size:.78rem;font-weight:600;color:var(--gold-light);letter-spacing:.15em;text-transform:uppercase;margin-bottom:28px;backdrop-filter:blur(8px);opacity:0;animation:fadeUp .7s ease .2s forwards}
+    .hero h1{font-size:clamp(2.8rem,7vw,5.5rem);font-weight:300;line-height:1.08;color:#fff;letter-spacing:-.03em;margin-bottom:20px;opacity:0;animation:fadeUp .7s ease .35s forwards}
+    .hero h1 em{font-style:italic;font-weight:500;color:var(--gold-light)}
+    .hero-sub{font-size:1.1rem;color:rgba(255,255,255,.7);max-width:500px;margin:0 auto 36px;line-height:1.7;opacity:0;animation:fadeUp .7s ease .5s forwards}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;opacity:0;animation:fadeUp .7s ease .65s forwards}
+    .btn-hero-primary{padding:14px 32px;border-radius:40px;background:var(--gold);color:var(--white);font-weight:600;font-size:.95rem;display:inline-flex;align-items:center;gap:8px;transition:all .3s;box-shadow:0 4px 15px rgba(196,162,122,.3)}
+    .btn-hero-primary:hover{background:var(--gold-dark);transform:translateY(-2px);box-shadow:0 12px 30px rgba(196,162,122,.35)}
+    .btn-hero-outline{padding:14px 28px;border-radius:40px;border:1.5px solid rgba(255,255,255,.3);color:#fff;font-weight:500;font-size:.95rem;display:inline-flex;align-items:center;gap:8px;transition:all .3s;background:rgba(255,255,255,.06)}
+    .btn-hero-outline:hover{border-color:var(--gold-light);color:var(--gold-light);background:rgba(255,255,255,.1)}
+    .btn-hero-wa{padding:14px 28px;border-radius:40px;background:#25D366;color:#fff;font-weight:600;font-size:.95rem;display:inline-flex;align-items:center;gap:8px;transition:all .3s}
+    .btn-hero-wa:hover{background:#1ebe5a;transform:translateY(-2px);box-shadow:0 8px 20px rgba(37,211,102,.3)}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+    /* ── Sections ── */
+    .section{padding:100px 0}
+    .section-blush{background:var(--blush)}
+    .section-header{text-align:center;margin-bottom:60px}
+    .section-tag{display:inline-block;font-size:.75rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+    .section-title{font-size:clamp(2rem,4.5vw,3.2rem);font-weight:400;color:var(--charcoal);letter-spacing:-.02em;line-height:1.15}
+    .section-title em{font-weight:500;color:var(--gold)}
+    .section-sub{font-size:1rem;color:var(--text-muted);max-width:500px;margin:12px auto 0}
+    .gold-line{width:60px;height:2px;background:var(--gold);margin:16px auto 0;border-radius:2px}
+
+    /* ── About ── */
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+    @media(max-width:768px){.about-grid{grid-template-columns:1fr;gap:40px}.about-grid .about-img-wrap{order:-1}}
+    .about-text .section-tag{text-align:left}
+    .about-text h2{font-size:clamp(2rem,4vw,3rem);font-weight:400;color:var(--charcoal);line-height:1.15;margin-bottom:20px;letter-spacing:-.02em}
+    .about-text h2 em{font-weight:500;color:var(--gold)}
+    .about-text p{color:var(--text-muted);line-height:1.8;margin-bottom:16px}
+    .about-features{display:flex;flex-wrap:wrap;gap:24px;margin-top:28px}
+    .about-feat{display:flex;align-items:center;gap:8px;font-weight:500;font-size:.9rem;color:var(--text)}
+    .about-feat i{color:var(--gold)}
+    .about-img-wrap{position:relative;border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:4/5;box-shadow:var(--shadow-xl);background:linear-gradient(135deg,#f5e6d8,#e8d1c4)}
+    .about-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+    .about-img-wrap:hover img{transform:scale(1.03)}
+    .about-img-wrap .img-overlay{position:absolute;bottom:0;left:0;right:0;padding:20px 24px;background:linear-gradient(transparent,rgba(42,36,32,.6))}
+    .about-img-wrap .img-overlay p{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:#fff}
+
+    /* ── Stats ── */
+    .stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:var(--charcoal);border-radius:var(--radius-lg);overflow:hidden;margin:-50px auto 0;position:relative;z-index:5;max-width:1000px}
+    @media(max-width:600px){.stats-bar{grid-template-columns:repeat(2,1fr)}}
+    .stat-item{padding:32px 20px;text-align:center;border-right:1px solid rgba(255,255,255,.06)}
+    .stat-item:last-child{border-right:none}
+    .stat-num{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:600;color:var(--gold);line-height:1}
+    .stat-label{font-size:.78rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.1em;margin-top:6px}
+
+    /* ── Services ── */
+    .services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px}
+    .service-card{background:var(--white);border-radius:var(--radius);padding:36px 28px;text-align:center;border:1px solid rgba(196,162,122,.08);transition:all .35s cubic-bezier(.25,.46,.45,.94);position:relative;overflow:hidden}
+    .service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:opacity .3s}
+    .service-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-xl);border-color:rgba(196,162,122,.15)}
+    .service-card:hover::before{opacity:1}
+    .service-icon{width:64px;height:64px;border-radius:50%;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;background:linear-gradient(135deg,var(--blush),var(--rose))}
+    .service-card h3{font-size:1.15rem;font-weight:600;font-family:'DM Sans',sans-serif;color:var(--charcoal);margin-bottom:8px}
+    .service-card .price{font-weight:600;color:var(--gold);font-size:.95rem}
+    .service-card .desc{font-size:.85rem;color:var(--text-muted);margin-top:8px;line-height:1.5}
+
+    /* ── Why ── */
+    .why-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+    .why-card{display:flex;align-items:center;gap:16px;background:linear-gradient(135deg,rgba(255,241,239,.5),var(--white));border:1px solid rgba(196,162,122,.06);border-radius:var(--radius);padding:24px;transition:all .3s}
+    .why-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:rgba(196,162,122,.15)}
+    .why-icon{width:52px;height:52px;flex-shrink:0;border-radius:16px;display:flex;align-items:center;justify-content:center;background:var(--blush);color:var(--gold);font-size:1.2rem}
+    .why-card h4{font-family:'DM Sans',sans-serif;font-weight:600;font-size:.95rem;color:var(--charcoal)}
+    .why-card p{font-size:.82rem;color:var(--text-muted);margin-top:2px}
+
+    /* ── Before/After ── */
+    .ba-section{position:relative;overflow:hidden;border-radius:var(--radius-lg);max-width:1100px;margin:0 auto;box-shadow:var(--shadow-lg)}
+    .ba-grid{display:grid;grid-template-columns:1fr 1fr}
+    @media(max-width:768px){.ba-grid{grid-template-columns:1fr}}
+    .ba-text{padding:60px 48px;background:var(--white);display:flex;flex-direction:column;justify-content:center}
+    .ba-images{display:grid;grid-template-columns:1fr 1fr;gap:0}
+    .ba-img-box{position:relative;overflow:hidden;aspect-ratio:4/5;background:var(--blush)}
+    .ba-img-box img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+    .ba-img-box:hover img{transform:scale(1.05)}
+    .ba-label{position:absolute;bottom:12px;left:12px;padding:5px 16px;border-radius:20px;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;backdrop-filter:blur(8px)}
+    .ba-img-box:first-child .ba-label{background:rgba(42,36,32,.75);color:#fff}
+    .ba-img-box:last-child .ba-label{background:var(--gold);color:#fff}
+
+    /* ── Gallery ── */
+    .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    @media(max-width:768px){.gallery-grid{grid-template-columns:repeat(2,1fr)}}
+    .gallery-item{border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:all .35s;position:relative;aspect-ratio:1;background:var(--blush)}
+    .gallery-item:hover{transform:scale(1.03);box-shadow:var(--shadow-lg)}
+    .gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+    .gallery-item:hover img{transform:scale(1.08)}
+    .gallery-overlay{position:absolute;inset:0;background:rgba(42,36,32,.45);display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;transition:opacity .3s}
+    .gallery-overlay i{color:#fff;font-size:1.4rem;margin-bottom:8px}
+    .gallery-overlay span{color:#fff;font-size:.82rem;font-weight:500}
+    .gallery-item:hover .gallery-overlay{opacity:1}
+
+    /* ── Modal ── */
+    .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:10000;align-items:center;justify-content:center;padding:20px}
+    .modal.active{display:flex}
+    .modal-close{position:absolute;top:20px;right:28px;color:#fff;font-size:2rem;cursor:pointer;width:48px;height:48px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:background .2s;z-index:10}
+    .modal-close:hover{background:rgba(255,255,255,.1)}
+    .modal-body{max-width:900px;width:100%;text-align:center}
+    .modal-body img{max-width:100%;max-height:80vh;object-fit:contain;border-radius:var(--radius);margin:0 auto}
+    .modal-body h3{font-size:1.4rem;color:var(--white);margin-top:16px}
+    .modal-body p{color:rgba(255,255,255,.6);font-size:.9rem;margin-top:6px}
+
+    /* ── Testimonials ── */
+    .testimonials-track{display:flex;gap:24px;overflow-x:auto;padding-bottom:16px;scroll-snap-type:x mandatory;scrollbar-width:thin;scrollbar-color:var(--gold) var(--blush)}
+    .testimonials-track::-webkit-scrollbar{height:4px}
+    .testimonials-track::-webkit-scrollbar-track{background:var(--blush);border-radius:10px}
+    .testimonials-track::-webkit-scrollbar-thumb{background:var(--gold-light);border-radius:10px}
+    .testimonial-card{flex:0 0 340px;scroll-snap-align:start;background:var(--white);border-radius:var(--radius);padding:32px 28px;border:1px solid rgba(196,162,122,.06);transition:all .3s}
+    .testimonial-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+    .tc-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+    .tc-avatar{width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid var(--gold-light)}
+    .tc-stars{color:#f5b342;font-size:.85rem;letter-spacing:2px}
+    .tc-text{font-style:italic;color:var(--text-muted);line-height:1.7;font-size:.92rem;margin-bottom:20px}
+    .tc-name{font-weight:600;font-size:.9rem;color:var(--charcoal)}
+    .tc-service{font-size:.78rem;color:var(--text-muted);margin-top:2px}
+
+    /* ── Booking ── */
+    .booking-wrapper{background:linear-gradient(135deg,var(--rose),rgba(255,241,239,.5),rgba(232,213,190,.2));border-radius:var(--radius-lg);padding:4px}
+    .booking-card{background:var(--white);border-radius:calc(var(--radius-lg) - 4px);padding:48px 40px;max-width:700px;margin:0 auto}
+    @media(max-width:600px){.booking-card{padding:32px 20px}}
+    .booking-card h2{font-size:2rem;text-align:center;color:var(--charcoal);margin-bottom:32px}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    @media(max-width:600px){.form-grid{grid-template-columns:1fr}}
+    .form-field.full{grid-column:1/-1}
+    .form-field input,.form-field select,.form-field textarea{width:100%;padding:14px 20px;border:1.5px solid rgba(196,162,122,.15);border-radius:14px;font-family:'DM Sans',sans-serif;font-size:.9rem;color:var(--text);background:var(--cream);transition:all .25s;outline:none}
+    .form-field textarea{border-radius:16px;resize:vertical;min-height:80px}
+    .form-field input:focus,.form-field select:focus,.form-field textarea:focus{border-color:var(--gold);box-shadow:0 0 0 4px rgba(196,162,122,.12);background:var(--white)}
+    .form-field input::placeholder,.form-field textarea::placeholder{color:var(--text-muted);opacity:.6}
+    .form-actions{display:flex;gap:12px;justify-content:center;margin-top:24px;flex-wrap:wrap}
+    .btn-submit{padding:14px 36px;border-radius:40px;background:var(--gold);color:var(--white);font-weight:600;font-size:.95rem;display:inline-flex;align-items:center;gap:8px;transition:all .3s}
+    .btn-submit:hover{background:var(--gold-dark);box-shadow:0 8px 24px rgba(196,162,122,.35);transform:translateY(-1px)}
+    .btn-wa-book{padding:14px 28px;border-radius:40px;border:1.5px solid #25D366;color:#25D366;font-weight:600;font-size:.95rem;display:inline-flex;align-items:center;gap:8px;background:transparent;transition:all .3s}
+    .btn-wa-book:hover{background:#25D366;color:var(--white)}
+    #formMsg{text-align:center;margin-top:16px;font-size:.88rem;color:var(--gold)}
+
+    /* ── Tips ── */
+    .tips-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px}
+    .tip-card{background:var(--white);border-radius:var(--radius);padding:28px;transition:all .3s;border:1px solid rgba(196,162,122,.06)}
+    .tip-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+    .tip-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:var(--blush);color:var(--gold);font-size:1.2rem;margin-bottom:16px}
+    .tip-card h3{font-family:'DM Sans',sans-serif;font-weight:600;font-size:1rem;color:var(--charcoal);margin-bottom:6px}
+    .tip-card p{font-size:.85rem;color:var(--text-muted);line-height:1.6}
+
+    /* ── Social ── */
+    .insta-section{background:var(--blush);padding:48px 0;text-align:center}
+    .insta-header{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:24px}
+    .insta-header i{font-size:1.8rem;color:var(--gold)}
+    .insta-header h3{font-size:1.4rem;color:var(--charcoal)}
+    .insta-grid{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+    .insta-thumb{width:90px;height:90px;border-radius:50%;object-fit:cover;border:3px solid var(--white);box-shadow:var(--shadow-sm);transition:transform .3s}
+    .insta-thumb:hover{transform:scale(1.12)}
+
+    /* ── Contact ── */
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+    @media(max-width:768px){.contact-grid{grid-template-columns:1fr}}
+    .contact-info h2{font-size:2.4rem;color:var(--charcoal);margin:12px 0 24px}
+    .contact-item{display:flex;align-items:flex-start;gap:14px;margin-bottom:18px}
+    .contact-item i{color:var(--gold);font-size:1rem;margin-top:4px;width:20px;text-align:center}
+    .contact-item span,.contact-item a{color:var(--text);font-size:.95rem;line-height:1.5}
+    .contact-item a{transition:color .2s}
+    .contact-item a:hover{color:var(--gold)}
+    .contact-actions{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
+    .btn-outline-gold{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border:1.5px solid var(--gold);border-radius:40px;color:var(--gold);font-weight:500;font-size:.9rem;transition:all .3s}
+    .btn-outline-gold:hover{background:var(--gold);color:var(--white)}
+    .contact-map{border-radius:var(--radius-lg);overflow:hidden;height:380px;box-shadow:var(--shadow-lg);background:var(--blush)}
+    .contact-map iframe{width:100%;height:100%;border:0}
+
+    /* ── Footer ── */
+    .footer{background:var(--charcoal);color:rgba(255,255,255,.7);padding:64px 0 32px}
+    .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px}
+    @media(max-width:768px){.footer-grid{grid-template-columns:1fr;gap:32px}}
+    .footer h3{font-size:1.5rem;color:var(--white);margin-bottom:12px}
+    .footer p{font-size:.9rem;line-height:1.7}
+    .footer h4{font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.4);margin-bottom:16px}
+    .footer-links{list-style:none}
+    .footer-links li{margin-bottom:8px}
+    .footer-links a{font-size:.9rem;color:rgba(255,255,255,.6);transition:color .2s}
+    .footer-links a:hover{color:var(--gold)}
+    .footer-socials{display:flex;gap:14px;margin-bottom:20px}
+    .footer-socials a{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.06);color:rgba(255,255,255,.6);font-size:1.1rem;transition:all .25s}
+    .footer-socials a:hover{background:var(--gold);color:var(--white);transform:translateY(-2px)}
+    .footer-bottom{margin-top:48px;padding-top:24px;border-top:1px solid rgba(255,255,255,.06);text-align:center;font-size:.82rem;color:rgba(255,255,255,.3)}
+
+    /* ── Floating WA ── */
+    .floating-wa{position:fixed;bottom:24px;right:24px;z-index:50;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.6rem;box-shadow:0 4px 20px rgba(37,211,102,.35);transition:all .3s;animation:waPulse 2s ease-in-out infinite}
+    .floating-wa:hover{transform:scale(1.1);background:#1ebe5a;box-shadow:0 8px 30px rgba(37,211,102,.45);animation:none}
+    @keyframes waPulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.35)}50%{box-shadow:0 4px 30px rgba(37,211,102,.55)}}
+
+    /* ── Reveal ── */
+    .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+
+    /* ── Image fallback ── */
+    .img-fallback{background:linear-gradient(135deg,#f5e6d8,#e8d1c4,#f0ddd0);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:2rem}
   </style>
 </head>
 <body>
 
 <!-- Loader -->
-<div id="loading" class="fixed inset-0 bg-white z-50 flex items-center justify-center transition-opacity duration-700">
-  <div class="text-center"><div class="inline-block h-12 w-12 rounded-full border-4 border-[#c4a27a] border-t-transparent animate-spin"></div><p class="mt-4 text-[#c4a27a] font-serif text-lg">Maria's Beauty Parlour</p></div>
-</div>
+<div id="loading"><div style="text-align:center"><div class="loader-ring"></div><p class="loader-text">Maria's Beauty Parlour</p></div></div>
 
 <!-- Navigation -->
-<nav class="sticky top-0 z-40 sticky-nav py-3 px-5 md:px-10">
-  <div class="max-w-7xl mx-auto flex justify-between items-center">
-    <div class="text-2xl font-serif font-semibold text-gray-800">Maria's <span class="text-[#c4a27a]">Beauty</span></div>
-    <div class="hidden md:flex space-x-7 text-gray-700 font-medium">
-      <a href="#home" class="hover:text-[#c4a27a] transition">Home</a>
-      <a href="#about" class="hover:text-[#c4a27a] transition">About</a>
-      <a href="#services" class="hover:text-[#c4a27a] transition">Services</a>
-      <a href="#gallery" class="hover:text-[#c4a27a] transition">Gallery</a>
-      <a href="#testimonials" class="hover:text-[#c4a27a] transition">Reviews</a>
-      <a href="#contact" class="hover:text-[#c4a27a] transition">Contact</a>
+<nav class="nav" id="mainNav">
+  <div class="nav-inner">
+    <a href="#home" class="nav-logo">Maria's <span>Beauty</span></a>
+    <div class="nav-links">
+      <a href="#home">Home</a><a href="#about">About</a><a href="#services">Services</a><a href="#gallery">Gallery</a><a href="#testimonials">Reviews</a><a href="#contact">Contact</a>
     </div>
-    <div class="flex items-center gap-3">
-      <a href="tel:03348592187" class="text-[#c4a27a] border border-[#c4a27a] px-4 py-1.5 rounded-full text-sm hidden sm:inline-block hover:bg-[#c4a27a] hover:text-white transition">Call Now</a>
-      <a href="#booking" class="btn-primary text-sm py-2 px-4">Book</a>
-      <i class="fas fa-bars md:hidden text-2xl text-[#c4a27a] cursor-pointer" id="mobileMenuBtn"></i>
+    <div class="nav-actions">
+      <a href="tel:03348592187" class="btn-nav-call"><i class="fas fa-phone-alt"></i>&nbsp; Call</a>
+      <a href="#booking" class="btn-book">Book Now</a>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
     </div>
   </div>
-  <div id="mobileMenu" class="hidden md:hidden bg-white/95 backdrop-blur-md absolute top-full left-0 w-full shadow-lg py-4 px-6 flex flex-col gap-3 border-t border-[#fff1ef]">
-    <a href="#home" class="py-2 hover:text-[#c4a27a]">Home</a><a href="#about" class="py-2 hover:text-[#c4a27a]">About</a><a href="#services" class="py-2 hover:text-[#c4a27a]">Services</a><a href="#gallery" class="py-2 hover:text-[#c4a27a]">Gallery</a><a href="#testimonials" class="py-2 hover:text-[#c4a27a]">Reviews</a><a href="#contact" class="py-2 hover:text-[#c4a27a]">Contact</a>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#home">Home</a><a href="#about">About</a><a href="#services">Services</a><a href="#gallery">Gallery</a><a href="#testimonials">Reviews</a><a href="#contact">Contact</a>
   </div>
 </nav>
 
 <main>
-  <!-- Hero Section -->
-  <section id="home" class="relative min-h-[90vh] flex items-center justify-center bg-cover bg-center" style="background-image: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.35)), url('https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=1974&auto=format'); background-size: cover; background-position: 60% 35%;">
-    <div class="relative z-10 text-center text-white px-5 max-w-4xl mx-auto animate-fade-up">
-      <h1 class="text-5xl md:text-7xl font-serif font-bold mb-5 drop-shadow-lg">Enhancing Your Natural Beauty</h1>
-      <p class="text-xl md:text-2xl font-light mb-8 tracking-wide">Professional Hair, Makeup & Skin Care Services in Karachi</p>
-      <div class="flex flex-wrap justify-center gap-4">
-        <a href="#booking" class="btn-primary bg-white text-[#c4a27a] hover:bg-[#c4a27a] hover:text-white border-none shadow-lg">Book Appointment</a>
-        <a href="tel:03348592187" class="bg-transparent border-2 border-white text-white px-6 py-3 rounded-full font-medium hover:bg-white hover:text-gray-800 transition flex items-center gap-2"><i class="fas fa-phone-alt"></i> Call Now</a>
-        <a href="https://wa.me/923348592187" target="_blank" class="bg-[#25D366] text-white px-6 py-3 rounded-full font-medium hover:bg-[#20b95a] transition flex items-center gap-2"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+
+  <!-- ═══ HERO ═══ -->
+  <section id="home" class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-badge"><i class="fas fa-spa"></i> Premium Beauty Salon in Karachi</div>
+      <h1>Enhancing Your<br>Natural <em>Beauty</em></h1>
+      <p class="hero-sub">Professional hair styling, bridal makeup, and advanced skincare treatments in a luxurious sanctuary at Gulshan-e-Iqbal.</p>
+      <div class="hero-actions">
+        <a href="#booking" class="btn-hero-primary"><i class="far fa-calendar-check"></i> Book Appointment</a>
+        <a href="tel:03348592187" class="btn-hero-outline"><i class="fas fa-phone-alt"></i> Call Now</a>
+        <a href="https://wa.me/923348592187" target="_blank" class="btn-hero-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
       </div>
     </div>
   </section>
 
-  <!-- About Section with realistic salon image -->
-  <section id="about" class="py-20 px-6 md:px-12 max-w-7xl mx-auto">
-    <div class="grid md:grid-cols-2 gap-12 items-center">
-      <div class="order-2 md:order-1">
-        <span class="text-[#c4a27a] uppercase tracking-wider text-sm font-semibold">— Our Story</span>
-        <h2 class="text-4xl md:text-5xl font-serif mt-2 mb-6 text-gray-800">Where Elegance Meets Expertise</h2>
-        <p class="text-gray-600 leading-relaxed mb-4">At Maria's Beauty Parlour Hair & Skin Care, we blend artistry with advanced techniques to redefine beauty. Our experienced professionals use premium global products to deliver transformative hair, makeup, and skincare experiences.</p>
-        <p class="text-gray-600 leading-relaxed mb-6">From bridal glamour to everyday radiance, our relaxing sanctuary in Gulshan-e-Iqbal promises unparalleled customer satisfaction. We celebrate every client's uniqueness with warmth and precision.</p>
-        <div class="flex flex-wrap gap-5"><i class="fas fa-check-circle text-[#c4a27a]"></i><span>100% Hygiene & Safety</span><i class="fas fa-check-circle text-[#c4a27a] ml-4"></i><span>Certified Experts</span></div>
+  <!-- ═══ ABOUT ═══ -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <span class="section-tag">— Our Story</span>
+          <h2>Where <em>Elegance</em> Meets Expertise</h2>
+          <p>At Maria's Beauty Parlour Hair &amp; Skin Care, we blend artistry with advanced techniques to redefine beauty. Our experienced professionals use premium global products to deliver transformative hair, makeup, and skincare experiences.</p>
+          <p>From bridal glamour to everyday radiance, our relaxing sanctuary in Gulshan-e-Iqbal promises unparalleled customer satisfaction. We celebrate every client's uniqueness with warmth and precision.</p>
+          <div class="about-features">
+            <div class="about-feat"><i class="fas fa-check-circle"></i> 100% Hygiene &amp; Safety</div>
+            <div class="about-feat"><i class="fas fa-check-circle"></i> Certified Experts</div>
+            <div class="about-feat"><i class="fas fa-check-circle"></i> Premium Products</div>
+            <div class="about-feat"><i class="fas fa-check-circle"></i> Personalized Care</div>
+          </div>
+        </div>
+        <div class="about-img-wrap reveal">
+          <img src="https://images.unsplash.com/photo-1633681906653-30c5d4a4c40b?auto=format&fit=crop&w=800&q=80" alt="Luxury salon interior with warm lighting and elegant decor" loading="lazy">
+          <div class="img-overlay"><p>"Beauty begins the moment you decide to be yourself."</p></div>
+        </div>
       </div>
-      <div class="order-1 md:order-2 rounded-3xl overflow-hidden shadow-2xl">
-        <img src="https://images.unsplash.com/photo-1633681906653-30c5d4a4c40b?q=80&w=1974&auto=format" alt="Luxury salon interior" class="w-full h-full object-cover">
-      </div>
-    </div>
-  </section>
-
-  <!-- Services Section -->
-  <section id="services" class="py-20 bg-[#fff1ef] px-6">
-    <div class="max-w-7xl mx-auto text-center">
-      <h2 class="text-4xl md:text-5xl font-serif text-gray-800">Signature Services</h2>
-      <p class="text-gray-500 mt-2 mb-12">Tailored beauty experiences with transparent pricing</p>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="bg-white rounded-2xl p-6 shadow-md service-card text-center border border-white/40"><div class="text-5xl mb-4">💇‍♀️</div><h3 class="text-xl font-bold text-gray-800 mb-2">Hair Cutting & Styling</h3><p class="text-[#c4a27a] font-semibold">Starting ₨1,200</p></div>
-        <div class="bg-white rounded-2xl p-6 shadow-md service-card text-center"><div class="text-5xl mb-4">🎨</div><h3 class="text-xl font-bold text-gray-800 mb-2">Hair Coloring</h3><p class="text-[#c4a27a] font-semibold">₨3,500+</p></div>
-        <div class="bg-white rounded-2xl p-6 shadow-md service-card text-center"><div class="text-5xl mb-4">👰‍♀️</div><h3 class="text-xl font-bold text-gray-800 mb-2">Bridal Makeup</h3><p class="text-[#c4a27a] font-semibold">₨15,000+</p></div>
-        <div class="bg-white rounded-2xl p-6 shadow-md service-card text-center"><div class="text-5xl mb-4">✨</div><h3 class="text-xl font-bold text-gray-800 mb-2">Party Makeup</h3><p class="text-[#c4a27a] font-semibold">₨6,000+</p></div>
-        <div class="bg-white rounded-2xl p-6 shadow-md service-card text-center"><div class="text-5xl mb-4">🌸</div><h3 class="text-xl font-bold text-gray-800 mb-2">Facial & Skin Care</h3><p class="text-[#c4a27a] font-semibold">₨2,500+</p></div>
-        <div class="bg-white rounded-2xl p-6 shadow-md service-card text-center"><div class="text-5xl mb-4">💅</div><h3 class="text-xl font-bold text-gray-800 mb-2">Manicure & Pedicure</h3><p class="text-[#c4a27a] font-semibold">₨1,800</p></div>
-        <div class="bg-white rounded-2xl p-6 shadow-md service-card text-center"><div class="text-5xl mb-4">🔥</div><h3 class="text-xl font-bold text-gray-800 mb-2">Waxing</h3><p class="text-[#c4a27a] font-semibold">₨800+</p></div>
-        <div class="bg-white rounded-2xl p-6 shadow-md service-card text-center"><div class="text-5xl mb-4">💆‍♀️</div><h3 class="text-xl font-bold text-gray-800 mb-2">Hair Treatments</h3><p class="text-[#c4a27a] font-semibold">₨2,200+</p></div>
-        <div class="bg-white rounded-2xl p-6 shadow-md service-card text-center"><div class="text-5xl mb-4">🧵</div><h3 class="text-xl font-bold text-gray-800 mb-2">Threading</h3><p class="text-[#c4a27a] font-semibold">₨200+</p></div>
-        <div class="bg-white rounded-2xl p-6 shadow-md service-card text-center"><div class="text-5xl mb-4">🌿</div><h3 class="text-xl font-bold text-gray-800 mb-2">Mehndi Services</h3><p class="text-[#c4a27a] font-semibold">₨4,000+</p></div>
+      <div class="stats-bar reveal">
+        <div class="stat-item"><div class="stat-num">8+</div><div class="stat-label">Years Experience</div></div>
+        <div class="stat-item"><div class="stat-num">5K+</div><div class="stat-label">Happy Clients</div></div>
+        <div class="stat-item"><div class="stat-num">25+</div><div class="stat-label">Services</div></div>
+        <div class="stat-item"><div class="stat-num">4.9</div><div class="stat-label">Rating</div></div>
       </div>
     </div>
   </section>
 
-  <!-- Why Choose Us -->
-  <section class="py-20 px-6 max-w-7xl mx-auto">
-    <div class="text-center"><h2 class="text-4xl font-serif">Why Choose Us</h2><div class="w-24 h-1 bg-[#c4a27a] mx-auto my-4"></div></div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-      <div class="flex items-center gap-3 bg-gradient-to-r from-[#fef7f2] to-white rounded-2xl p-5 shadow-sm"><i class="fas fa-user-tie text-[#c4a27a] text-2xl"></i><span class="font-medium text-gray-700">Professional Staff</span></div>
-      <div class="flex items-center gap-3 bg-gradient-to-r from-[#fef7f2] to-white rounded-2xl p-5 shadow-sm"><i class="fas fa-spa text-[#c4a27a] text-2xl"></i><span class="font-medium text-gray-700">Hygienic Environment</span></div>
-      <div class="flex items-center gap-3 bg-gradient-to-r from-[#fef7f2] to-white rounded-2xl p-5 shadow-sm"><i class="fas fa-crown text-[#c4a27a] text-2xl"></i><span class="font-medium text-gray-700">Premium Products</span></div>
-      <div class="flex items-center gap-3 bg-gradient-to-r from-[#fef7f2] to-white rounded-2xl p-5 shadow-sm"><i class="fas fa-tags text-[#c4a27a] text-2xl"></i><span class="font-medium text-gray-700">Affordable Packages</span></div>
-      <div class="flex items-center gap-3 bg-gradient-to-r from-[#fef7f2] to-white rounded-2xl p-5 shadow-sm"><i class="fas fa-heart text-[#c4a27a] text-2xl"></i><span class="font-medium text-gray-700">Bridal Expertise</span></div>
-      <div class="flex items-center gap-3 bg-gradient-to-r from-[#fef7f2] to-white rounded-2xl p-5 shadow-sm"><i class="fas fa-smile text-[#c4a27a] text-2xl"></i><span class="font-medium text-gray-700">Friendly Customer Service</span></div>
+  <!-- ═══ SERVICES ═══ -->
+  <section id="services" class="section section-blush">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">What We Offer</span>
+        <h2 class="section-title">Signature <em>Services</em></h2>
+        <p class="section-sub">Tailored beauty experiences with transparent pricing</p>
+        <div class="gold-line"></div>
+      </div>
+      <div class="services-grid">
+        <div class="service-card reveal"><div class="service-icon">✂️</div><h3>Hair Cutting &amp; Styling</h3><div class="price">Starting Rs. 1,200</div><p class="desc">Precision cuts, blowouts &amp; trendy styles tailored to your face shape.</p></div>
+        <div class="service-card reveal"><div class="service-icon">🎨</div><h3>Hair Coloring</h3><div class="price">Rs. 3,500+</div><p class="desc">Balayage, highlights, global color &amp; creative techniques.</p></div>
+        <div class="service-card reveal"><div class="service-icon">👰</div><h3>Bridal Makeup</h3><div class="price">Rs. 15,000+</div><p class="desc">Complete bridal packages with HD airbrush &amp; traditional looks.</p></div>
+        <div class="service-card reveal"><div class="service-icon">✨</div><h3>Party Makeup</h3><div class="price">Rs. 6,000+</div><p class="desc">Glamorous looks for events, engagements &amp; special occasions.</p></div>
+        <div class="service-card reveal"><div class="service-icon">🌸</div><h3>Facial &amp; Skin Care</h3><div class="price">Rs. 2,500+</div><p class="desc">Whitening, anti-aging, acne treatment &amp; glow facials.</p></div>
+        <div class="service-card reveal"><div class="service-icon">💅</div><h3>Manicure &amp; Pedicure</h3><div class="price">Rs. 1,800</div><p class="desc">Nail art, gel polish, spa manicure &amp; luxury pedicure.</p></div>
+        <div class="service-card reveal"><div class="service-icon">🔥</div><h3>Waxing</h3><div class="price">Rs. 800+</div><p class="desc">Full body, arms, legs &amp; sensitive area waxing.</p></div>
+        <div class="service-card reveal"><div class="service-icon">💆</div><h3>Hair Treatments</h3><div class="price">Rs. 2,200+</div><p class="desc">Keratin, protein, deep conditioning &amp; scalp treatments.</p></div>
+        <div class="service-card reveal"><div class="service-icon">🧵</div><h3>Threading</h3><div class="price">Rs. 200+</div><p class="desc">Eyebrow shaping, upper lip &amp; full face threading.</p></div>
+        <div class="service-card reveal"><div class="service-icon">🌿</div><h3>Mehndi Services</h3><div class="price">Rs. 4,000+</div><p class="desc">Arabic, bridal &amp; festive henna designs by skilled artists.</p></div>
+      </div>
     </div>
   </section>
 
-  <!-- Before/After Highlight with realistic transformation images -->
-  <section class="py-12 px-6 max-w-6xl mx-auto">
-    <div class="relative rounded-3xl overflow-hidden bg-black/5 shadow-xl"><div class="grid md:grid-cols-2"><div class="p-8 md:p-12 bg-white/80"><span class="text-[#c4a27a] text-sm font-semibold">BEFORE & AFTER</span><h3 class="text-3xl font-serif my-3">Dramatic Transformations</h3><p>Witness the magic of our bridal makeovers & skincare results. Each treatment enhances natural radiance.</p><a href="#gallery" class="inline-block mt-5 btn-outline">View Gallery →</a></div><div class="grid grid-cols-2 gap-1"><img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400&h=350&fit=crop" class="h-48 w-full object-cover" alt="Before makeover"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400&h=350&fit=crop" class="h-48 w-full object-cover" alt="After makeover"></div></div></div>
+  <!-- ═══ WHY CHOOSE US ═══ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">The Maria's Difference</span>
+        <h2 class="section-title">Why Choose <em>Us</em></h2>
+        <div class="gold-line"></div>
+      </div>
+      <div class="why-grid">
+        <div class="why-card reveal"><div class="why-icon"><i class="fas fa-user-tie"></i></div><div><h4>Professional Staff</h4><p>Trained &amp; certified beauty experts</p></div></div>
+        <div class="why-card reveal"><div class="why-icon"><i class="fas fa-spa"></i></div><div><h4>Hygienic Environment</h4><p>Sanitized tools &amp; pristine spaces</p></div></div>
+        <div class="why-card reveal"><div class="why-icon"><i class="fas fa-crown"></i></div><div><h4>Premium Products</h4><p>International brands &amp; organic options</p></div></div>
+        <div class="why-card reveal"><div class="why-icon"><i class="fas fa-tags"></i></div><div><h4>Affordable Packages</h4><p>Luxury services, honest pricing</p></div></div>
+        <div class="why-card reveal"><div class="why-icon"><i class="fas fa-heart"></i></div><div><h4>Bridal Expertise</h4><p>Specialists in wedding day glam</p></div></div>
+        <div class="why-card reveal"><div class="why-icon"><i class="fas fa-smile"></i></div><div><h4>Friendly Service</h4><p>Warm, welcoming atmosphere</p></div></div>
+      </div>
+    </div>
   </section>
 
-  <!-- Gallery Section with realistic beauty images (all high-quality unsplash) -->
-  <section id="gallery" class="py-20 bg-[#fff1ef] px-6">
-    <div class="max-w-7xl mx-auto"><h2 class="text-4xl font-serif text-center">Moments of <span class="text-[#c4a27a]">Beauty</span></h2><p class="text-center mb-10 text-gray-600">Bridal makeup • Hairstyles • Facial treatments • Salon interior</p>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="galleryGrid">
-      <img src="https://images.unsplash.com/photo-1516490981167-dc990a242afe?w=500&h=500&fit=crop" class="gallery-img w-full h-48 object-cover shadow-md" data-img="https://images.unsplash.com/photo-1516490981167-dc990a242afe?w=1000&auto=format" alt="bridal makeup">
-      <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500&h=500&fit=crop" class="gallery-img w-full h-48 object-cover shadow-md" data-img="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1000&auto=format" alt="hairstyle">
-      <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=500&h=500&fit=crop" class="gallery-img w-full h-48 object-cover shadow-md" data-img="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1000&auto=format" alt="facial treatment">
-      <img src="https://images.unsplash.com/photo-1562329267-a0b7bb3cf5a7?w=500&h=500&fit=crop" class="gallery-img w-full h-48 object-cover shadow-md" data-img="https://images.unsplash.com/photo-1562329267-a0b7bb3cf5a7?w=1000&auto=format" alt="salon interior">
-      <img src="https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?w=500&h=500&fit=crop" class="gallery-img w-full h-48 object-cover shadow-md" data-img="https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?w=1000&auto=format" alt="nail art">
-      <img src="https://images.unsplash.com/photo-1595475207225-428b62bda831?w=500&h=500&fit=crop" class="gallery-img w-full h-48 object-cover shadow-md" data-img="https://images.unsplash.com/photo-1595475207225-428b62bda831?w=1000&auto=format" alt="hair color">
-      <img src="https://images.unsplash.com/photo-1583248824775-6cd8ffa01c24?w=500&h=500&fit=crop" class="gallery-img w-full h-48 object-cover shadow-md" data-img="https://images.unsplash.com/photo-1583248824775-6cd8ffa01c24?w=1000&auto=format" alt="manicure">
-      <img src="https://images.unsplash.com/photo-1616394584738-8ea34b4a4d2b?w=500&h=500&fit=crop" class="gallery-img w-full h-48 object-cover shadow-md" data-img="https://images.unsplash.com/photo-1616394584738-8ea34b4a4d2b?w=1000&auto=format" alt="skincare glow">
-    </div></div>
+  <!-- ═══ BEFORE / AFTER ═══ -->
+  <section class="section">
+    <div class="container">
+      <div class="ba-section reveal">
+        <div class="ba-grid">
+          <div class="ba-text">
+            <span class="section-tag">Before &amp; After</span>
+            <h2 style="font-size:clamp(1.8rem,3.5vw,2.6rem);margin:12px 0 16px;color:var(--charcoal)">Dramatic <em>Transformations</em></h2>
+            <p style="color:var(--text-muted);line-height:1.8;margin-bottom:24px">Witness the magic of our bridal makeovers &amp; skincare results. Each treatment enhances your natural radiance with expert precision.</p>
+            <a href="#gallery" class="btn-outline-gold">View Gallery <i class="fas fa-arrow-right"></i></a>
+          </div>
+          <div class="ba-images">
+            <div class="ba-img-box">
+              <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=500&q=80" alt="Before makeover — natural everyday look" loading="lazy">
+              <span class="ba-label">Before</span>
+            </div>
+            <div class="ba-img-box">
+              <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=500&q=80" alt="After makeover — glamorous styled look" loading="lazy">
+              <span class="ba-label">After</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <!-- Modal for gallery -->
-  <div id="imageModal" class="modal"><span class="close-modal">&times;</span><img id="modalImg" src=""></div>
+  <!-- ═══ GALLERY ═══ -->
+  <section id="gallery" class="section section-blush">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Our Portfolio</span>
+        <h2 class="section-title">Moments of <em>Beauty</em></h2>
+        <p class="section-sub">Bridal makeup &bull; Hairstyles &bull; Facials &bull; Nail art</p>
+        <div class="gold-line"></div>
+      </div>
+      <div class="gallery-grid">
 
-  <!-- Testimonials Section -->
-  <section id="testimonials" class="py-20 px-6 max-w-7xl mx-auto"><h2 class="text-4xl font-serif text-center">More Reviews of Clients</h2><div class="testimonial-slider mt-10">
-    <div class="testimonial-card"><div class="flex justify-between"><i class="fas fa-user-circle text-3xl text-[#c4a27a]"></i><div class="star-rating">⭐️⭐️⭐️⭐️⭐️</div></div><p class="mt-3 text-gray-600 italic">“Amazing bridal makeup! The team made me feel like royalty on my big day. Perfect service!”</p><h4 class="font-bold mt-4">— Ayesha Khan</h4></div>
-    <div class="testimonial-card"><div class="flex justify-between"><i class="fas fa-user-circle text-3xl text-[#c4a27a]"></i><div class="star-rating">⭐️⭐️⭐️⭐️⭐️</div></div><p class="mt-3 text-gray-600 italic">“Super hygienic, professional staff. Best facial I’ve ever had, glowing skin!”</p><h4 class="font-bold mt-4">— Sana Tariq</h4></div>
-    <div class="testimonial-card"><div class="flex justify-between"><i class="fas fa-user-circle text-3xl text-[#c4a27a]"></i><div class="star-rating">⭐️⭐️⭐️⭐️⭐️</div></div><p class="mt-3 text-gray-600 italic">“Affordable packages with high-end products. The haircut transformed my look.”</p><h4 class="font-bold mt-4">— Zara Ahmed</h4></div>
-    <div class="testimonial-card"><div class="flex justify-between"><i class="fas fa-user-circle text-3xl text-[#c4a27a]"></i><div class="star-rating">⭐️⭐️⭐️⭐️⭐️</div></div><p class="mt-3 text-gray-600 italic">“Love the relaxing atmosphere and friendly service. Mehndi was artistic!”</p><h4 class="font-bold mt-4">— Hira Sheikh</h4></div>
-    <div class="testimonial-card"><div class="flex justify-between"><i class="fas fa-user-circle text-3xl text-[#c4a27a]"></i><div class="star-rating">⭐️⭐️⭐️⭐️⭐️</div></div><p class="mt-3 text-gray-600 italic">“Party makeup was stunning — received so many compliments. Highly recommended.”</p><h4 class="font-bold mt-4">— Fatima Riaz</h4></div>
-    <div class="testimonial-card"><div class="flex justify-between"><i class="fas fa-user-circle text-3xl text-[#c4a27a]"></i><div class="star-rating">⭐️⭐️⭐️⭐️⭐️</div></div><p class="mt-3 text-gray-600 italic">“Skincare experts are wonderful! My skin has never looked healthier.”</p><h4 class="font-bold mt-4">— Nida Mahmood</h4></div>
-  </div></section>
+        <div class="gallery-item reveal" data-title="Bridal Makeup" data-desc="Our signature bridal look with HD airbrush foundation and traditional jewelry styling.">
+          <img src="https://images.unsplash.com/photo-1516490981167-dc990a242afe?auto=format&fit=crop&w=500&q=80" alt="Bridal makeup with elegant jewelry" loading="lazy">
+          <div class="gallery-overlay"><i class="fas fa-search-plus"></i><span>Bridal Makeup</span></div>
+        </div>
 
-  <!-- Appointment Booking -->
-  <section id="booking" class="py-20 px-6 bg-gradient-to-r from-rose-50 to-amber-50">
-    <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl p-6 md:p-10"><h2 class="text-3xl font-serif text-center">Book Your Glam Session</h2>
-    <form id="bookingForm" class="mt-8 grid md:grid-cols-2 gap-5"><div><input type="text" placeholder="Full Name" id="nameReq" required class="w-full"></div><div><input type="tel" placeholder="Phone Number" id="phoneReq" required></div><div><select id="serviceSelect"><option>Hair Cutting & Styling</option><option>Bridal Makeup</option><option>Party Makeup</option><option>Facial & Skin Care</option><option>Manicure & Pedicure</option><option>Waxing</option><option>Hair Coloring</option></select></div><div><input type="date" id="datePicker" required></div><div class="md:col-span-2"><textarea rows="2" placeholder="Your message / special requests..." id="msgField"></textarea></div><div class="md:col-span-2 flex flex-col sm:flex-row gap-4 justify-center"><button type="submit" class="btn-primary w-full sm:w-auto justify-center"><i class="far fa-calendar-check"></i> Book Appointment</button><a href="https://wa.me/923348592187?text=Hi%20Maria's%20Beauty%2C%20I%20want%20to%20book%20an%20appointment" target="_blank" class="btn-outline flex items-center justify-center gap-2"><i class="fab fa-whatsapp"></i> WhatsApp Booking</a></div></form>
-    <p id="formMsg" class="text-center text-[#c4a27a] text-sm mt-4"></p></div>
+        <div class="gallery-item reveal" data-title="Hairstyle" data-desc="Elegant updo with soft curls, perfect for weddings and formal events.">
+          <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=500&q=80" alt="Styled hair with elegant updo" loading="lazy">
+          <div class="gallery-overlay"><i class="fas fa-search-plus"></i><span>Hairstyle</span></div>
+        </div>
+
+        <div class="gallery-item reveal" data-title="Facial Treatment" data-desc="Hydrating facial with premium serums for a natural, dewy glow.">
+          <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=500&q=80" alt="Facial skincare treatment" loading="lazy">
+          <div class="gallery-overlay"><i class="fas fa-search-plus"></i><span>Facial Treatment</span></div>
+        </div>
+
+        <div class="gallery-item reveal" data-title="Salon Interior" data-desc="Our warm, luxurious interior designed for your ultimate comfort.">
+          <img src="https://images.unsplash.com/photo-1562329267-a0b7bb3cf5a7?auto=format&fit=crop&w=500&q=80" alt="Beautiful salon interior" loading="lazy">
+          <div class="gallery-overlay"><i class="fas fa-search-plus"></i><span>Salon Interior</span></div>
+        </div>
+
+        <div class="gallery-item reveal" data-title="Nail Art" data-desc="Creative nail designs with gel polish, chrome and 3D artistry.">
+          <img src="https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?auto=format&fit=crop&w=500&q=80" alt="Nail art design" loading="lazy">
+          <div class="gallery-overlay"><i class="fas fa-search-plus"></i><span>Nail Art</span></div>
+        </div>
+
+        <div class="gallery-item reveal" data-title="Hair Color" data-desc="Vibrant color transformations using premium international dyes.">
+          <img src="https://images.unsplash.com/photo-1595475207225-428b62bda831?auto=format&fit=crop&w=500&q=80" alt="Hair coloring and highlights" loading="lazy">
+          <div class="gallery-overlay"><i class="fas fa-search-plus"></i><span>Hair Color</span></div>
+        </div>
+
+        <div class="gallery-item reveal" data-title="Manicure" data-desc="Luxurious spa manicure with long-lasting gel finish.">
+          <img src="https://images.unsplash.com/photo-1583248824775-6cd8ffa01c24?auto=format&fit=crop&w=500&q=80" alt="Professional manicure and nail care" loading="lazy">
+          <div class="gallery-overlay"><i class="fas fa-search-plus"></i><span>Manicure</span></div>
+        </div>
+
+        <div class="gallery-item reveal" data-title="Skincare Glow" data-desc="Our signature glow facial with vitamin C infusion and LED therapy.">
+          <img src="https://images.unsplash.com/photo-1616394584738-8ea34b4a4d2b?auto=format&fit=crop&w=500&q=80" alt="Glowing skincare results" loading="lazy">
+          <div class="gallery-overlay"><i class="fas fa-search-plus"></i><span>Skincare Glow</span></div>
+        </div>
+
+      </div>
+    </div>
   </section>
 
-  <!-- Beauty Tips Preview -->
-  <section class="py-16 px-6 max-w-7xl mx-auto"><div class="flex flex-wrap justify-between items-center"><h2 class="text-3xl font-serif">Beauty Tips & Trends</h2></div><div class="grid md:grid-cols-3 gap-6 mt-6"><div class="bg-white p-5 rounded-2xl shadow-md"><i class="fas fa-leaf text-[#c4a27a] text-2xl"></i><h3 class="font-bold mt-2">Glowing skin secrets</h3><p class="text-sm text-gray-500">Hydration & SPF are key. Explore our organic facials.</p></div><div class="bg-white p-5 rounded-2xl shadow-md"><i class="fas fa-magic text-[#c4a27a] text-2xl"></i><h3 class="font-bold mt-2">Bridal prep timeline</h3><p class="text-sm text-gray-500">Start skincare 3 months ahead for flawless bridal glow.</p></div><div class="bg-white p-5 rounded-2xl shadow-md"><i class="fas fa-cut text-[#c4a27a] text-2xl"></i><h3 class="font-bold mt-2">Summer hairstyles</h3><p class="text-sm text-gray-500">Light layers & protective styles for humidity.</p></div></div></section>
+  <!-- Gallery Lightbox Modal -->
+  <div class="modal" id="galleryModal">
+    <div class="modal-close"><i class="fas fa-times"></i></div>
+    <div class="modal-body">
+      <img id="modalImg" src="" alt="">
+      <h3 id="modalTitle"></h3>
+      <p id="modalDesc"></p>
+    </div>
+  </div>
 
-  <!-- Instagram-style Social Feed (realistic influencer style images) -->
-  <section class="py-12 bg-[#fff1ef] text-center"><div class="flex justify-center items-center gap-3"><i class="fab fa-instagram text-3xl text-[#c4a27a]"></i><h3 class="text-2xl font-serif">@mariasbeauty</h3></div><div class="flex justify-center gap-3 mt-4 flex-wrap"><img class="w-20 h-20 rounded-full object-cover ring-2 ring-white shadow-md" src="https://randomuser.me/api/portraits/women/68.jpg" alt="client"><img class="w-20 h-20 rounded-full object-cover ring-2 ring-white shadow-md" src="https://randomuser.me/api/portraits/women/44.jpg" alt="client"><img class="w-20 h-20 rounded-full object-cover ring-2 ring-white shadow-md" src="https://randomuser.me/api/portraits/women/22.jpg" alt="client"><img class="w-20 h-20 rounded-full object-cover ring-2 ring-white shadow-md" src="https://randomuser.me/api/portraits/women/90.jpg" alt="client"></div></section>
-
-  <!-- Contact Section with Google Map embed -->
-  <section id="contact" class="py-20 px-6 max-w-7xl mx-auto">
-    <div class="grid md:grid-cols-2 gap-12"><div><h2 class="text-4xl font-serif">Visit Our Studio</h2><p class="mt-3 text-gray-600"><i class="fas fa-map-marker-alt text-[#c4a27a] mr-2"></i>W476+P4V, Moon Garden St, Block 11 Gulshan-e-Iqbal, Karachi</p><p class="mt-2"><i class="fas fa-phone-alt text-[#c4a27a] mr-2"></i>0334 8592187</p><p><i class="fab fa-facebook text-[#c4a27a] mr-2"></i><a href="https://www.facebook.com/mariasbeautyparlour" target="_blank" class="text-blue-700 hover:underline">Facebook Page</a></p><p><i class="fab fa-whatsapp text-[#c4a27a] mr-2"></i><a href="https://wa.me/923348592187" class="text-green-600 hover:underline">WhatsApp Chat</a></p><p class="mt-4"><strong>Opening Hours:</strong> Mon-Sat 11am – 8pm | Sunday: Closed</p><div class="flex gap-3 mt-6"><a href="https://maps.google.com/?q=W476+P4V+Moon+Garden+St+Block+11+Gulshan-e-Iqbal+Karachi" target="_blank" class="btn-outline"><i class="fas fa-directions"></i> Get Directions</a><a href="tel:03348592187" class="btn-primary">Call Now</a></div></div><div class="rounded-2xl overflow-hidden h-64 md:h-80 shadow-xl"><iframe src="https://maps.google.com/maps?q=W476%2BP4V%2C%20Moon%20Garden%20St%2C%20Block%2011%20Gulshan-e-Iqbal%2C%20Karachi&t=&z=16&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" title="Maria's Beauty Parlour Location"></iframe></div></div>
+  <!-- ═══ TESTIMONIALS ═══ -->
+  <section id="testimonials" class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Client Love</span>
+        <h2 class="section-title">What Our Clients <em>Say</em></h2>
+        <div class="gold-line"></div>
+      </div>
+      <div class="testimonials-track">
+        <div class="testimonial-card">
+          <div class="tc-header"><img class="tc-avatar" src="https://randomuser.me/api/portraits/women/68.jpg" alt="Ayesha Khan"><div class="tc-stars">★★★★★</div></div>
+          <p class="tc-text">"Amazing bridal makeup! The team made me feel like royalty on my big day. Every detail was perfect — from the airbrush base to the eye blending."</p>
+          <div class="tc-name">Ayesha Khan</div><div class="tc-service">Bridal Makeup</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="tc-header"><img class="tc-avatar" src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sana Tariq"><div class="tc-stars">★★★★★</div></div>
+          <p class="tc-text">"Super hygienic, professional staff. Best facial I've ever had — my skin was glowing for days after. The ambiance is so relaxing too."</p>
+          <div class="tc-name">Sana Tariq</div><div class="tc-service">Facial &amp; Skin Care</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="tc-header"><img class="tc-avatar" src="https://randomuser.me/api/portraits/women/22.jpg" alt="Zara Ahmed"><div class="tc-stars">★★★★★</div></div>
+          <p class="tc-text">"Affordable packages with high-end products. The haircut completely transformed my look. Maria herself supervised — so attentive!"</p>
+          <div class="tc-name">Zara Ahmed</div><div class="tc-service">Hair Cutting</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="tc-header"><img class="tc-avatar" src="https://randomuser.me/api/portraits/women/90.jpg" alt="Hira Sheikh"><div class="tc-stars">★★★★★</div></div>
+          <p class="tc-text">"Love the relaxing atmosphere and friendly service. The mehndi was incredibly artistic — intricate Arabic design that lasted beautifully."</p>
+          <div class="tc-name">Hira Sheikh</div><div class="tc-service">Mehndi Services</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="tc-header"><img class="tc-avatar" src="https://randomuser.me/api/portraits/women/65.jpg" alt="Fatima Riaz"><div class="tc-stars">★★★★★</div></div>
+          <p class="tc-text">"Party makeup was stunning — received so many compliments at the event. The look lasted all night without touch-ups. Will be back!"</p>
+          <div class="tc-name">Fatima Riaz</div><div class="tc-service">Party Makeup</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="tc-header"><img class="tc-avatar" src="https://randomuser.me/api/portraits/women/32.jpg" alt="Nida Mahmood"><div class="tc-stars">★★★★★</div></div>
+          <p class="tc-text">"Skincare experts are wonderful! My acne scars have visibly faded after just 3 sessions. They use genuine products and explain every step."</p>
+          <div class="tc-name">Nida Mahmood</div><div class="tc-service">Facial &amp; Skin Care</div>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="bg-gray-900 text-white py-10 px-6"><div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-8"><div><h3 class="text-2xl font-serif">Maria's Beauty Parlour</h3><p class="text-gray-400 mt-2">Hair & Skin Care | Karachi’s premium beauty destination</p></div><div><h4 class="font-semibold">Quick Links</h4><ul class="mt-2 space-y-1 text-gray-300"><li><a href="#home" class="hover:text-[#c4a27a]">Home</a></li><li><a href="#services" class="hover:text-[#c4a27a]">Services</a></li><li><a href="#gallery" class="hover:text-[#c4a27a]">Gallery</a></li><li><a href="#contact" class="hover:text-[#c4a27a]">Contact</a></li></ul></div><div><div class="flex gap-4 text-2xl"><a href="https://www.facebook.com/mariasbeautyparlour" target="_blank" class="hover:text-[#c4a27a]"><i class="fab fa-facebook"></i></a><a href="https://www.instagram.com/" target="_blank" class="hover:text-[#c4a27a]"><i class="fab fa-instagram"></i></a><a href="https://wa.me/923348592187" target="_blank" class="hover:text-[#c4a27a]"><i class="fab fa-whatsapp"></i></a></div><p class="text-sm text-gray-400 mt-4">© 2025 Maria's Beauty Parlour. Designed with elegance for beauty & skincare.</p></div></div></footer>
+  <!-- ═══ BOOKING ═══ -->
+  <section id="booking" class="section">
+    <div class="container">
+      <div class="booking-wrapper reveal">
+        <div class="booking-card">
+          <span class="section-tag" style="display:block;text-align:center">Reserve Your Spot</span>
+          <h2 class="serif">Book Your <em style="color:var(--gold);font-style:italic">Glam</em> Session</h2>
+          <form id="bookingForm">
+            <div class="form-grid">
+              <div class="form-field"><input type="text" placeholder="Full Name" id="nameReq" required></div>
+              <div class="form-field"><input type="tel" placeholder="Phone Number" id="phoneReq" required></div>
+              <div class="form-field"><select id="serviceSelect"><option>Hair Cutting &amp; Styling</option><option>Bridal Makeup</option><option>Party Makeup</option><option>Facial &amp; Skin Care</option><option>Manicure &amp; Pedicure</option><option>Waxing</option><option>Hair Coloring</option><option>Hair Treatments</option><option>Threading</option><option>Mehndi Services</option></select></div>
+              <div class="form-field"><input type="date" id="datePicker" required></div>
+              <div class="form-field full"><textarea rows="3" placeholder="Your message / special requests..." id="msgField"></textarea></div>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn-submit"><i class="far fa-calendar-check"></i> Book Appointment</button>
+              <a href="https://wa.me/923348592187?text=Hi%20Maria's%20Beauty%2C%20I%20want%20to%20book%20an%20appointment" target="_blank" class="btn-wa-book"><i class="fab fa-whatsapp"></i> WhatsApp Booking</a>
+            </div>
+          </form>
+          <p id="formMsg"></p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <a href="https://wa.me/923348592187" class="floating-wa text-white" target="_blank"><i class="fab fa-whatsapp text-3xl"></i></a>
+  <!-- ═══ BEAUTY TIPS ═══ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Beauty Knowledge</span>
+        <h2 class="section-title">Tips &amp; <em>Trends</em></h2>
+        <div class="gold-line"></div>
+      </div>
+      <div class="tips-grid">
+        <div class="tip-card reveal"><div class="tip-icon"><i class="fas fa-leaf"></i></div><h3>Glowing Skin Secrets</h3><p>Hydration &amp; SPF are the foundation. Explore our organic facials with vitamin C serum for a natural radiance boost.</p></div>
+        <div class="tip-card reveal"><div class="tip-icon"><i class="fas fa-magic"></i></div><h3>Bridal Prep Timeline</h3><p>Start your skincare routine 3 months before the wedding. Book a trial session 2 weeks prior for a flawless bridal glow.</p></div>
+        <div class="tip-card reveal"><div class="tip-icon"><i class="fas fa-cut"></i></div><h3>Summer Hairstyles</h3><p>Light layers, braided updos &amp; protective styles work best in Karachi's humidity. Ask us about heat-resistant styling.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ INSTAGRAM / SOCIAL ═══ -->
+  <section class="insta-section">
+    <div class="container reveal">
+      <div class="insta-header"><i class="fab fa-instagram"></i><h3 class="serif">@mariasbeauty</h3></div>
+      <div class="insta-grid">
+        <img class="insta-thumb" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80" alt="Happy client" loading="lazy">
+        <img class="insta-thumb" src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=200&q=80" alt="Glowing skin client" loading="lazy">
+        <img class="insta-thumb" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80" alt="Styled hair client" loading="lazy">
+        <img class="insta-thumb" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&q=80" alt="Bridal look client" loading="lazy">
+        <img class="insta-thumb" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=200&q=80" alt="Party makeup client" loading="lazy">
+        <img class="insta-thumb" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80" alt="Happy customer" loading="lazy">
+      </div>
+      <p style="margin-top:20px;font-size:.85rem;color:var(--text-muted)">Follow us for daily beauty inspiration, before &amp; afters, and exclusive offers.</p>
+    </div>
+  </section>
+
+  <!-- ═══ CONTACT ═══ -->
+  <section id="contact" class="section">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <span class="section-tag">Get In Touch</span>
+          <h2 class="serif">Visit Our <em style="color:var(--gold);font-style:italic">Studio</em></h2>
+          <div style="margin-top:28px">
+            <div class="contact-item"><i class="fas fa-map-marker-alt"></i><span>W476+P4V, Moon Garden St, Block 11 Gulshan-e-Iqbal, Karachi</span></div>
+            <div class="contact-item"><i class="fas fa-phone-alt"></i><a href="tel:03348592187">0334 8592187</a></div>
+            <div class="contact-item"><i class="fas fa-clock"></i><span>Mon – Sat: 11:00 AM – 8:00 PM<br>Sunday: Closed</span></div>
+            <div class="contact-item"><i class="fab fa-facebook"></i><a href="https://www.facebook.com/mariasbeautyparlour" target="_blank">facebook.com/mariasbeautyparlour</a></div>
+            <div class="contact-item"><i class="fab fa-whatsapp"></i><a href="https://wa.me/923348592187" target="_blank">WhatsApp Chat</a></div>
+          </div>
+          <div class="contact-actions">
+            <a href="https://maps.google.com/?q=W476+P4V+Moon+Garden+St+Block+11+Gulshan-e-Iqbal+Karachi" target="_blank" class="btn-outline-gold"><i class="fas fa-directions"></i> Get Directions</a>
+            <a href="tel:03348592187" class="btn-book" style="padding:12px 28px"><i class="fas fa-phone-alt"></i>&nbsp; Call Now</a>
+          </div>
+        </div>
+        <div class="contact-map reveal">
+          <iframe src="https://maps.google.com/maps?q=W476%2BP4V%2C%20Moon%20Garden%20St%2C%20Block%2011%20Gulshan-e-Iqbal%2C%20Karachi&t=&z=16&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0" allowfullscreen loading="lazy" title="Maria's Beauty Parlour Location"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </main>
 
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h3 class="serif">Maria's Beauty Parlour</h3>
+        <p>Hair &amp; Skin Care — Karachi's premium beauty destination. Where artistry meets expertise to bring out your natural radiance.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="#home">Home</a></li><li><a href="#about">About Us</a></li><li><a href="#services">Services</a></li><li><a href="#gallery">Gallery</a></li><li><a href="#testimonials">Reviews</a></li><li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Connect</h4>
+        <div class="footer-socials">
+          <a href="https://www.facebook.com/mariasbeautyparlour" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/923348592187" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <p style="font-size:.85rem"><i class="fas fa-map-marker-alt" style="color:var(--gold);margin-right:6px"></i>Gulshan-e-Iqbal, Karachi</p>
+        <p style="font-size:.85rem;margin-top:6px"><i class="fas fa-phone-alt" style="color:var(--gold);margin-right:6px"></i>0334 8592187</p>
+      </div>
+    </div>
+    <div class="footer-bottom">&copy; 2025 Maria's Beauty Parlour. Designed with elegance for beauty &amp; skincare.</div>
+  </div>
+</footer>
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/923348592187" class="floating-wa" target="_blank" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+
 <script>
-  // Loader
-  window.addEventListener('load', () => { setTimeout(()=>{ document.getElementById('loading').style.opacity='0'; setTimeout(()=>document.getElementById('loading').style.display='none',500); }, 400); });
-  // Mobile menu toggle
-  const menuBtn = document.getElementById('mobileMenuBtn'); const mobileMenu = document.getElementById('mobileMenu');
-  if(menuBtn) menuBtn.addEventListener('click',()=>{ mobileMenu.classList.toggle('hidden'); });
-  // Booking form -> WhatsApp integration
-  const bookingForm = document.getElementById('bookingForm');
-  if(bookingForm){
-    bookingForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = document.getElementById('nameReq').value.trim();
-      const phone = document.getElementById('phoneReq').value.trim();
-      if(!name || !phone){ document.getElementById('formMsg').innerText = 'Please provide name and phone number.'; return; }
-      const service = document.getElementById('serviceSelect').value;
-      const date = document.getElementById('datePicker').value;
-      const msg = document.getElementById('msgField').value;
-      const waMsg = `Hello Maria's Beauty! I would like to book an appointment:%0A%0AName: ${encodeURIComponent(name)}%0APhone: ${encodeURIComponent(phone)}%0AService: ${encodeURIComponent(service)}%0ADate: ${date}%0AMessage: ${encodeURIComponent(msg)}`;
-      window.open(`https://wa.me/923348592187?text=${waMsg}`, '_blank');
-      document.getElementById('formMsg').innerHTML = '✅ Redirecting to WhatsApp to confirm booking!';
-      setTimeout(()=> document.getElementById('formMsg').innerText='', 4000);
-    });
-  }
-  // Set min date for date picker
-  const dateInput = document.getElementById('datePicker'); if(dateInput){ const today = new Date().toISOString().split('T')[0]; dateInput.min = today; }
-  // Gallery Modal
-  const modal = document.getElementById('imageModal');
-  const modalImg = document.getElementById('modalImg');
-  const closeModal = document.querySelector('.close-modal');
-  document.querySelectorAll('.gallery-img').forEach(img => {
-    img.addEventListener('click', function() { modal.style.display = 'flex'; modalImg.src = this.getAttribute('data-img'); });
+  // ── Loader ──
+  window.addEventListener('load', () => { setTimeout(() => document.getElementById('loading').classList.add('hidden'), 500); });
+
+  // ── Nav scroll shadow ──
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20));
+
+  // ── Mobile menu ──
+  const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburgerBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+    const icon = hamburgerBtn.querySelector('i');
+    icon.classList.toggle('fa-bars');
+    icon.classList.toggle('fa-times');
   });
-  closeModal.onclick = () => modal.style.display = 'none';
-  modal.onclick = (e) => { if(e.target === modal) modal.style.display = 'none'; };
-  // Close mobile menu on link click
-  document.querySelectorAll('#mobileMenu a').forEach(link => link.addEventListener('click', () => mobileMenu.classList.add('hidden')));
+  mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+    hamburgerBtn.querySelector('i').classList.add('fa-bars');
+    hamburgerBtn.querySelector('i').classList.remove('fa-times');
+  }));
+
+  // ── Image error fallback ──
+  document.querySelectorAll('img').forEach(img => {
+    img.addEventListener('error', function() {
+      // Don't hide avatars, just show a colored fallback
+      if (this.classList.contains('tc-avatar') || this.classList.contains('insta-thumb')) {
+        this.style.display = 'none';
+        const fallback = document.createElement('div');
+        fallback.style.cssText = 'width:' + this.offsetWidth + 'px;height:' + this.offsetHeight + 'px;border-radius:50%;background:linear-gradient(135deg,#f5e6d8,#e8d1c4);display:flex;align-items:center;justify-content:center;color:#c4a27a;font-size:1.2rem;font-weight:600;font-family:Cormorant Garamond,serif;';
+        fallback.textContent = 'M';
+        if (this.classList.contains('tc-avatar')) fallback.style.border = '2px solid #e8d5be';
+        if (this.classList.contains('insta-thumb')) fallback.style.border = '3px solid white';
+        this.parentNode.insertBefore(fallback, this);
+      } else {
+        this.style.display = 'none';
+        if (this.parentElement) this.parentElement.classList.add('img-fallback');
+      }
+    });
+  });
+
+  // ── Booking form → WhatsApp ──
+  const bookingForm = document.getElementById('bookingForm');
+  const formMsg = document.getElementById('formMsg');
+  bookingForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const name = document.getElementById('nameReq').value.trim();
+    const phone = document.getElementById('phoneReq').value.trim();
+    if (!name || !phone) { formMsg.innerText = 'Please provide your name and phone number.'; return; }
+    const service = document.getElementById('serviceSelect').value;
+    const date = document.getElementById('datePicker').value;
+    const msg = document.getElementById('msgField').value;
+    const lines = ["Hello Maria's Beauty! I'd like to book an appointment:", "", "Name: " + name, "Phone: " + phone, "Service: " + service, "Date: " + date];
+    if (msg) lines.push("Message: " + msg);
+    window.open('https://wa.me/923348592187?text=' + encodeURIComponent(lines.join('\n')), '_blank');
+    formMsg.innerHTML = '<i class="fas fa-check-circle"></i> Redirecting to WhatsApp to confirm your booking!';
+    setTimeout(() => formMsg.innerText = '', 5000);
+  });
+  const dateInput = document.getElementById('datePicker');
+  if (dateInput) dateInput.min = new Date().toISOString().split('T')[0];
+
+  // ── Gallery lightbox ──
+  const galleryModal = document.getElementById('galleryModal');
+  const modalImg = document.getElementById('modalImg');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalDesc = document.getElementById('modalDesc');
+
+  document.querySelectorAll('.gallery-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const img = item.querySelector('img');
+      modalImg.src = img.src;
+      modalImg.alt = img.alt;
+      modalTitle.textContent = item.dataset.title || '';
+      modalDesc.textContent = item.dataset.desc || '';
+      galleryModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+  function closeModal() {
+    galleryModal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  galleryModal.querySelector('.modal-close').addEventListener('click', closeModal);
+  galleryModal.addEventListener('click', e => { if (e.target === galleryModal) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  // ── Scroll reveal ──
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
