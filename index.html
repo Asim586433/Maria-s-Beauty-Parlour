@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Maria's Beauty Parlour | Hair & Skin Care | Karachi</title>
+  <meta name="description" content="Experience luxury beauty services in Karachi. Professional hair, bridal makeup, skincare & more at Maria's Beauty Parlour. Book your appointment today.">
+  <meta name="keywords" content="beauty salon Karachi, bridal makeup, hair styling, skincare, Maria's Beauty Parlour">
+  <!-- Google Fonts & Tailwind + FontAwesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    * { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: #fffaf7; }
+    h1, h2, h3, .font-serif { font-family: 'Playfair Display', serif; }
+    .bg-soft-blush { background-color: #fff1ef; }
+    .text-gold { color: #c4a27a; }
+    .border-gold { border-color: #c4a27a; }
+    .btn-primary { background: #c4a27a; color: white; padding: 0.75rem 1.8rem; border-radius: 40px; font-weight: 500; transition: 0.2s; display: inline-flex; align-items: center; gap: 8px; border: 1px solid transparent; }
+    .btn-primary:hover { background: #b28b60; transform: scale(1.02); box-shadow: 0 8px 18px rgba(196,162,122,0.3); }
+    .btn-outline { background: transparent; border: 1.5px solid #c4a27a; color: #c4a27a; padding: 0.7rem 1.5rem; border-radius: 40px; font-weight: 500; transition: 0.2s; }
+    .btn-outline:hover { background: #c4a27a; color: white; }
+    .floating-wa { position: fixed; bottom: 24px; right: 24px; z-index: 50; background: #25D366; width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: 0.2s; }
+    .floating-wa:hover { transform: scale(1.05); background: #20b95a; }
+    input, select, textarea { border: 1px solid #f0e0d4; border-radius: 28px; padding: 12px 18px; width: 100%; outline: none; transition: 0.2s; background: white; }
+    input:focus, select:focus, textarea:focus { border-color: #c4a27a; box-shadow: 0 0 0 3px rgba(196,162,122,0.2); }
+    .testimonial-card { background: white; border-radius: 28px; padding: 1.8rem; box-shadow: 0 8px 24px rgba(0,0,0,0.03); transition: 0.2s; }
+    .testimonial-card:hover { box-shadow: 0 20px 30px -12px rgba(0,0,0,0.08); transform: translateY(-3px); }
+    .star-rating { color: #f5b342; letter-spacing: 2px; }
+    .sticky-nav { backdrop-filter: blur(12px); background: rgba(255, 250, 245, 0.95); transition: all 0.2s; box-shadow: 0 2px 15px rgba(0,0,0,0.03); }
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; cursor: pointer; }
+    .modal img { max-width: 90%; max-height: 90%; object-fit: contain; border-radius: 12px; }
+    .close-modal { position: absolute; top: 20px; right: 35px; color: white; font-size: 40px; font-weight: bold; cursor: pointer; }
+    .service-card { transition: all 0.3s ease; }
+    .service-card:hover { transform: translateY(-6px); box-shadow: 0 25px 35px -12px rgba(0,0,0,0.15); }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .animate-fade-up { animation: fadeInUp 0.7s ease forwards; }
+    .testimonial-slider { display: flex; overflow-x: auto; gap: 1.5rem; padding-bottom: 1rem; scrollbar-width: thin; scroll-snap-type: x mandatory; }
+    .testimonial-slider::-webkit-scrollbar { height: 5px; }
+    .testimonial-slider::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+    .testimonial-slider::-webkit-scrollbar-thumb { background: #c4a27a; border-radius: 10px; }
+    .testimonial-card { flex: 0 0 300px; scroll-snap-align: start; }
+    @media (min-width: 768px) { .testimonial-card { flex: 0 0 350px; } }
+    .gallery-img { cursor: pointer; transition: 0.3s; border-radius: 16px; }
+    .gallery-img:hover { transform: scale(1.02); opacity: 0.9; box-shadow: 0 12px 24px rgba(0,0,0,0.15); }
+  </style>
+</head>
+<body>
+
+<!-- Loader -->
+<div id="loading" class="fixed inset-0 bg-white z-50 flex items-center justify-center transition-opacity duration-700">
+  <div class="text-center"><div class="inline-block h-12 w-12 rounded-full border-4 border-[#c4a27a] border-t-transparent animate-spin"></div><p class="mt-4 text-[#c4a27a] font-serif text-lg">Maria's Beauty Parlour</p></div>
+</div>
+
+<!-- Navigation -->
+<nav class="sticky top-0 z-40 sticky-nav py-3 px-5 md:px-10">
+  <div class="max-w-7xl mx-auto flex justify-between items-center">
+    <div class="text-2xl font-serif font-semibold text-gray-800">Maria's <span class="text-[#c4a27a]">Beauty</span></div>
+    <div class="hidden md:flex space-x-7 text-gray-700 font-medium">
+      <a href="#home" class="hover:text-[#c4a27a] transition">Home</a>
+      <a href="#about" class="hover:text-[#c4a27a] transition">About</a>
+      <a href="#services" class="hover:text-[#c4a27a] transition">Services</a>
+      <a href="#gallery" class="hover:text-[#c4a27a] transition">Gallery</a>
+      <a href="#testimonials" class="hover:text-[#c4a27a] transition">Reviews</a>
+      <a href="#contact" class="hover:text-[#c4a27a] transition">Contact</a>
+    </div>
+    <div class="flex items-center gap-3">
+      <a href="tel:03348592187" class="text-[#c4a27a] border border-[#c4a27a] px-4 py-1.5 rounded-full text-sm hidden sm:inline-block hover:bg-[#c4a27a] hover:text-white transition">Call Now</a>
+      <a href="#booking" class="btn-primary text-sm py-2 px-4">Book</a>
+      <i class="fas fa-bars md:hidden text-2xl text-[#c4a27a] cursor-pointer" id="mobileMenuBtn"></i>
+    </div>
+  </div>
+  <div id="mobileMenu" class="hidden md:hidden bg-white/95 backdrop-blur-md absolute top-full left-0 w-full shadow-lg py-4 px-6 flex flex-col gap-3 border-t border-[#fff1ef]">
+    <a href="#home" class="py-2 hover:text-[#c4a27a]">Home</a><a href="#about" class="py-2 hover:text-[#c4a27a]">About</a><a href="#services" class="py-2 hover:text-[#c4a27a]">Services</a><a href="#gallery" class="py-2 hover:text-[#c4a27a]">Gallery</a><a href="#testimonials" class="py-2 hover:text-[#c4a27a]">Reviews</a><a href="#contact" class="py-2 hover:text-[#c4a27a]">Contact</a>
+  </div>
+</nav>
+
+<main>
+  <!-- Hero Section -->
+  <section id="home" class="relative min-h-[90vh] flex items-center justify-center bg-cover bg-center" style="background-image: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.35)), url('https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=1974&auto=format'); background-size: cover; background-position: 60% 35%;">
+    <div class="relative z-10 text-center text-white px-5 max-w-4xl mx-auto animate-fade-up">
+      <h1 class="text-5xl md:text-7xl font-serif font-bold mb-5 drop-shadow-lg">Enhancing Your Natural Beauty</h1>
+      <p class="text-xl md:text-2xl font-light mb-8 tracking-wide">Professional Hair, Makeup & Skin Care Services in Karachi</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="#booking" class="btn-primary bg-white text-[#c4a27a] hover:bg-[#c4a27a] hover:text-white border-none shadow-lg">Book Appointment</a>
+        <a href="tel:03348592187" class="bg-transparent border-2 border-white text-white px-6 py-3 rounded-full font-medium hover:bg-white hover:text-gray-800 transition flex items-center gap-2"><i class="fas fa-phone-alt"></i> Call Now</a>
+        <a href="https://wa.me/923348592187" target="_blank" class="bg-[#25D366] text-white px-6 py-3 rounded-full font-medium hover:bg-[#20b95a] transition flex items-center gap-2"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section with realistic salon image -->
+  <section id="about" class="py-20 px-6 md:px-12 max-w-7xl mx-auto">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div class="order-2 md:order-1">
+        <span class="text-[#c4a27a] uppercase tracking-wider text-sm font-semibold">— Our Story</span>
+        <h2 class="text-4xl md:text-5xl font-serif mt-2 mb-6 text-gray-800">Where Elegance Meets Expertise</h2>
+        <p class="text-gray-600 leading-relaxed mb-4">At Maria's Beauty Parlour Hair & Skin Care, we blend artistry with advanced techniques to redefine beauty. Our experienced professionals use premium global products to deliver transformative hair, makeup, and skincare experiences.</p>
+        <p class="text-gray-600 leading-relaxed mb-6">From bridal glamour to everyday radiance, our relaxing sanctuary in Gulshan-e-Iqbal promises unparalleled customer satisfaction. We celebrate every client's uniqueness with warmth and precision.</p>
+        <div class="flex flex-wrap gap-5"><i class="fas fa-check-circle text-[#c4a27a]"></i><span>100% Hygiene & Safety</span><i class="fas fa-check-circle text-[#c4a27a] ml-4"></i><span>Certified Experts</span></div>
+      </div>
+      <div class="order-1 md:order-2 rounded-3xl overflow-hidden shadow-2xl">
+        <img src="https://images.unsplash.com/photo-1633681906653-30c5d4a4c40b?q=80&w=1974&auto=format" alt="Luxury salon interior" class="w-full h-full object-cover">
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="py-20 bg-[#fff1ef] px-6">
+    <div class="max-w-7xl mx-auto text-center">
+      <h2 class="text-4xl md:text-5xl font-serif text-gray-800">Signature Services</h2>
+      <p class="text-gray-500 mt-2 mb-12">Tailored beauty experiences with transparent pricing</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-white rounded-2xl p-6 shadow-md service-card text-center border border-white/40"><div class="text-5xl mb-4">💇‍♀️</div><h3 class="text-xl font-bold text-gray-800 mb-2">Hair Cutting & Styling</h3><p class="text-[#c4a27a] font-semibold">Starting ₨1,200</p></div>
+        <div class="bg-white rounded-2xl p-6 shadow-md service-card text-center"><div class="text-5xl mb-4">🎨</div><h3 class="text-xl font-bold text-gray-800 mb-2">Hair Coloring</h3><p class="text-[#c4a27a] font-semibold">₨3,500+</p></div>
+        <div class="bg-white rounded-2xl p-6 shadow-md service-card text-center"><div class="text-5xl mb-4">👰‍♀️</div><h3 class="text-xl font-bold text-gray-800 mb-2">Bridal Makeup</h3><p class="text-[#c4a27a] font-semibold">₨15,000+</p></div>
+        <div class="bg-white rounded-2xl p-6 shadow-md service-card text-center"><div class="text-5xl mb-4">✨</div><h3 class="text-xl font-bold text-gray-800 mb-2">Party Makeup</h3><p class="text-[#c4a27a] font-semibold">₨6,000+</p></div>
+        <div class="bg-white rounded-2xl p-6 shadow-md service-card text-center"><div class="text-5xl mb-4">🌸</div><h3 class="text-xl font-bold text-gray-800 mb-2">Facial & Skin Care</h3><p class="text-[#c4a27a] font-semibold">₨2,500+</p></div>
+        <div class="bg-white rounded-2xl p-6 shadow-md service-card text-center"><div class="text-5xl mb-4">💅</div><h3 class="text-xl font-bold text-gray-800 mb-2">Manicure & Pedicure</h3><p class="text-[#c4a27a] font-semibold">₨1,800</p></div>
+        <div class="bg-white rounded-2xl p-6 shadow-md service-card text-center"><div class="text-5xl mb-4">🔥</div><h3 class="text-xl font-bold text-gray-800 mb-2">Waxing</h3><p class="text-[#c4a27a] font-semibold">₨800+</p></div>
+        <div class="bg-white rounded-2xl p-6 shadow-md service-card text-center"><div class="text-5xl mb-4">💆‍♀️</div><h3 class="text-xl font-bold text-gray-800 mb-2">Hair Treatments</h3><p class="text-[#c4a27a] font-semibold">₨2,200+</p></div>
+        <div class="bg-white rounded-2xl p-6 shadow-md service-card text-center"><div class="text-5xl mb-4">🧵</div><h3 class="text-xl font-bold text-gray-800 mb-2">Threading</h3><p class="text-[#c4a27a] font-semibold">₨200+</p></div>
+        <div class="bg-white rounded-2xl p-6 shadow-md service-card text-center"><div class="text-5xl mb-4">🌿</div><h3 class="text-xl font-bold text-gray-800 mb-2">Mehndi Services</h3><p class="text-[#c4a27a] font-semibold">₨4,000+</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="py-20 px-6 max-w-7xl mx-auto">
+    <div class="text-center"><h2 class="text-4xl font-serif">Why Choose Us</h2><div class="w-24 h-1 bg-[#c4a27a] mx-auto my-4"></div></div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+      <div class="flex items-center gap-3 bg-gradient-to-r from-[#fef7f2] to-white rounded-2xl p-5 shadow-sm"><i class="fas fa-user-tie text-[#c4a27a] text-2xl"></i><span class="font-medium text-gray-700">Professional Staff</span></div>
+      <div class="flex items-center gap-3 bg-gradient-to-r from-[#fef7f2] to-white rounded-2xl p-5 shadow-sm"><i class="fas fa-spa text-[#c4a27a] text-2xl"></i><span class="font-medium text-gray-700">Hygienic Environment</span></div>
+      <div class="flex items-center gap-3 bg-gradient-to-r from-[#fef7f2] to-white rounded-2xl p-5 shadow-sm"><i class="fas fa-crown text-[#c4a27a] text-2xl"></i><span class="font-medium text-gray-700">Premium Products</span></div>
+      <div class="flex items-center gap-3 bg-gradient-to-r from-[#fef7f2] to-white rounded-2xl p-5 shadow-sm"><i class="fas fa-tags text-[#c4a27a] text-2xl"></i><span class="font-medium text-gray-700">Affordable Packages</span></div>
+      <div class="flex items-center gap-3 bg-gradient-to-r from-[#fef7f2] to-white rounded-2xl p-5 shadow-sm"><i class="fas fa-heart text-[#c4a27a] text-2xl"></i><span class="font-medium text-gray-700">Bridal Expertise</span></div>
+      <div class="flex items-center gap-3 bg-gradient-to-r from-[#fef7f2] to-white rounded-2xl p-5 shadow-sm"><i class="fas fa-smile text-[#c4a27a] text-2xl"></i><span class="font-medium text-gray-700">Friendly Customer Service</span></div>
+    </div>
+  </section>
+
+  <!-- Before/After Highlight with realistic transformation images -->
+  <section class="py-12 px-6 max-w-6xl mx-auto">
+    <div class="relative rounded-3xl overflow-hidden bg-black/5 shadow-xl"><div class="grid md:grid-cols-2"><div class="p-8 md:p-12 bg-white/80"><span class="text-[#c4a27a] text-sm font-semibold">BEFORE & AFTER</span><h3 class="text-3xl font-serif my-3">Dramatic Transformations</h3><p>Witness the magic of our bridal makeovers & skincare results. Each treatment enhances natural radiance.</p><a href="#gallery" class="inline-block mt-5 btn-outline">View Gallery →</a></div><div class="grid grid-cols-2 gap-1"><img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400&h=350&fit=crop" class="h-48 w-full object-cover" alt="Before makeover"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400&h=350&fit=crop" class="h-48 w-full object-cover" alt="After makeover"></div></div></div>
+  </section>
+
+  <!-- Gallery Section with realistic beauty images (all high-quality unsplash) -->
+  <section id="gallery" class="py-20 bg-[#fff1ef] px-6">
+    <div class="max-w-7xl mx-auto"><h2 class="text-4xl font-serif text-center">Moments of <span class="text-[#c4a27a]">Beauty</span></h2><p class="text-center mb-10 text-gray-600">Bridal makeup • Hairstyles • Facial treatments • Salon interior</p>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="galleryGrid">
+      <img src="https://images.unsplash.com/photo-1516490981167-dc990a242afe?w=500&h=500&fit=crop" class="gallery-img w-full h-48 object-cover shadow-md" data-img="https://images.unsplash.com/photo-1516490981167-dc990a242afe?w=1000&auto=format" alt="bridal makeup">
+      <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500&h=500&fit=crop" class="gallery-img w-full h-48 object-cover shadow-md" data-img="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1000&auto=format" alt="hairstyle">
+      <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=500&h=500&fit=crop" class="gallery-img w-full h-48 object-cover shadow-md" data-img="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1000&auto=format" alt="facial treatment">
+      <img src="https://images.unsplash.com/photo-1562329267-a0b7bb3cf5a7?w=500&h=500&fit=crop" class="gallery-img w-full h-48 object-cover shadow-md" data-img="https://images.unsplash.com/photo-1562329267-a0b7bb3cf5a7?w=1000&auto=format" alt="salon interior">
+      <img src="https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?w=500&h=500&fit=crop" class="gallery-img w-full h-48 object-cover shadow-md" data-img="https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?w=1000&auto=format" alt="nail art">
+      <img src="https://images.unsplash.com/photo-1595475207225-428b62bda831?w=500&h=500&fit=crop" class="gallery-img w-full h-48 object-cover shadow-md" data-img="https://images.unsplash.com/photo-1595475207225-428b62bda831?w=1000&auto=format" alt="hair color">
+      <img src="https://images.unsplash.com/photo-1583248824775-6cd8ffa01c24?w=500&h=500&fit=crop" class="gallery-img w-full h-48 object-cover shadow-md" data-img="https://images.unsplash.com/photo-1583248824775-6cd8ffa01c24?w=1000&auto=format" alt="manicure">
+      <img src="https://images.unsplash.com/photo-1616394584738-8ea34b4a4d2b?w=500&h=500&fit=crop" class="gallery-img w-full h-48 object-cover shadow-md" data-img="https://images.unsplash.com/photo-1616394584738-8ea34b4a4d2b?w=1000&auto=format" alt="skincare glow">
+    </div></div>
+  </section>
+
+  <!-- Modal for gallery -->
+  <div id="imageModal" class="modal"><span class="close-modal">&times;</span><img id="modalImg" src=""></div>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="py-20 px-6 max-w-7xl mx-auto"><h2 class="text-4xl font-serif text-center">More Reviews of Clients</h2><div class="testimonial-slider mt-10">
+    <div class="testimonial-card"><div class="flex justify-between"><i class="fas fa-user-circle text-3xl text-[#c4a27a]"></i><div class="star-rating">⭐️⭐️⭐️⭐️⭐️</div></div><p class="mt-3 text-gray-600 italic">“Amazing bridal makeup! The team made me feel like royalty on my big day. Perfect service!”</p><h4 class="font-bold mt-4">— Ayesha Khan</h4></div>
+    <div class="testimonial-card"><div class="flex justify-between"><i class="fas fa-user-circle text-3xl text-[#c4a27a]"></i><div class="star-rating">⭐️⭐️⭐️⭐️⭐️</div></div><p class="mt-3 text-gray-600 italic">“Super hygienic, professional staff. Best facial I’ve ever had, glowing skin!”</p><h4 class="font-bold mt-4">— Sana Tariq</h4></div>
+    <div class="testimonial-card"><div class="flex justify-between"><i class="fas fa-user-circle text-3xl text-[#c4a27a]"></i><div class="star-rating">⭐️⭐️⭐️⭐️⭐️</div></div><p class="mt-3 text-gray-600 italic">“Affordable packages with high-end products. The haircut transformed my look.”</p><h4 class="font-bold mt-4">— Zara Ahmed</h4></div>
+    <div class="testimonial-card"><div class="flex justify-between"><i class="fas fa-user-circle text-3xl text-[#c4a27a]"></i><div class="star-rating">⭐️⭐️⭐️⭐️⭐️</div></div><p class="mt-3 text-gray-600 italic">“Love the relaxing atmosphere and friendly service. Mehndi was artistic!”</p><h4 class="font-bold mt-4">— Hira Sheikh</h4></div>
+    <div class="testimonial-card"><div class="flex justify-between"><i class="fas fa-user-circle text-3xl text-[#c4a27a]"></i><div class="star-rating">⭐️⭐️⭐️⭐️⭐️</div></div><p class="mt-3 text-gray-600 italic">“Party makeup was stunning — received so many compliments. Highly recommended.”</p><h4 class="font-bold mt-4">— Fatima Riaz</h4></div>
+    <div class="testimonial-card"><div class="flex justify-between"><i class="fas fa-user-circle text-3xl text-[#c4a27a]"></i><div class="star-rating">⭐️⭐️⭐️⭐️⭐️</div></div><p class="mt-3 text-gray-600 italic">“Skincare experts are wonderful! My skin has never looked healthier.”</p><h4 class="font-bold mt-4">— Nida Mahmood</h4></div>
+  </div></section>
+
+  <!-- Appointment Booking -->
+  <section id="booking" class="py-20 px-6 bg-gradient-to-r from-rose-50 to-amber-50">
+    <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl p-6 md:p-10"><h2 class="text-3xl font-serif text-center">Book Your Glam Session</h2>
+    <form id="bookingForm" class="mt-8 grid md:grid-cols-2 gap-5"><div><input type="text" placeholder="Full Name" id="nameReq" required class="w-full"></div><div><input type="tel" placeholder="Phone Number" id="phoneReq" required></div><div><select id="serviceSelect"><option>Hair Cutting & Styling</option><option>Bridal Makeup</option><option>Party Makeup</option><option>Facial & Skin Care</option><option>Manicure & Pedicure</option><option>Waxing</option><option>Hair Coloring</option></select></div><div><input type="date" id="datePicker" required></div><div class="md:col-span-2"><textarea rows="2" placeholder="Your message / special requests..." id="msgField"></textarea></div><div class="md:col-span-2 flex flex-col sm:flex-row gap-4 justify-center"><button type="submit" class="btn-primary w-full sm:w-auto justify-center"><i class="far fa-calendar-check"></i> Book Appointment</button><a href="https://wa.me/923348592187?text=Hi%20Maria's%20Beauty%2C%20I%20want%20to%20book%20an%20appointment" target="_blank" class="btn-outline flex items-center justify-center gap-2"><i class="fab fa-whatsapp"></i> WhatsApp Booking</a></div></form>
+    <p id="formMsg" class="text-center text-[#c4a27a] text-sm mt-4"></p></div>
+  </section>
+
+  <!-- Beauty Tips Preview -->
+  <section class="py-16 px-6 max-w-7xl mx-auto"><div class="flex flex-wrap justify-between items-center"><h2 class="text-3xl font-serif">Beauty Tips & Trends</h2></div><div class="grid md:grid-cols-3 gap-6 mt-6"><div class="bg-white p-5 rounded-2xl shadow-md"><i class="fas fa-leaf text-[#c4a27a] text-2xl"></i><h3 class="font-bold mt-2">Glowing skin secrets</h3><p class="text-sm text-gray-500">Hydration & SPF are key. Explore our organic facials.</p></div><div class="bg-white p-5 rounded-2xl shadow-md"><i class="fas fa-magic text-[#c4a27a] text-2xl"></i><h3 class="font-bold mt-2">Bridal prep timeline</h3><p class="text-sm text-gray-500">Start skincare 3 months ahead for flawless bridal glow.</p></div><div class="bg-white p-5 rounded-2xl shadow-md"><i class="fas fa-cut text-[#c4a27a] text-2xl"></i><h3 class="font-bold mt-2">Summer hairstyles</h3><p class="text-sm text-gray-500">Light layers & protective styles for humidity.</p></div></div></section>
+
+  <!-- Instagram-style Social Feed (realistic influencer style images) -->
+  <section class="py-12 bg-[#fff1ef] text-center"><div class="flex justify-center items-center gap-3"><i class="fab fa-instagram text-3xl text-[#c4a27a]"></i><h3 class="text-2xl font-serif">@mariasbeauty</h3></div><div class="flex justify-center gap-3 mt-4 flex-wrap"><img class="w-20 h-20 rounded-full object-cover ring-2 ring-white shadow-md" src="https://randomuser.me/api/portraits/women/68.jpg" alt="client"><img class="w-20 h-20 rounded-full object-cover ring-2 ring-white shadow-md" src="https://randomuser.me/api/portraits/women/44.jpg" alt="client"><img class="w-20 h-20 rounded-full object-cover ring-2 ring-white shadow-md" src="https://randomuser.me/api/portraits/women/22.jpg" alt="client"><img class="w-20 h-20 rounded-full object-cover ring-2 ring-white shadow-md" src="https://randomuser.me/api/portraits/women/90.jpg" alt="client"></div></section>
+
+  <!-- Contact Section with Google Map embed -->
+  <section id="contact" class="py-20 px-6 max-w-7xl mx-auto">
+    <div class="grid md:grid-cols-2 gap-12"><div><h2 class="text-4xl font-serif">Visit Our Studio</h2><p class="mt-3 text-gray-600"><i class="fas fa-map-marker-alt text-[#c4a27a] mr-2"></i>W476+P4V, Moon Garden St, Block 11 Gulshan-e-Iqbal, Karachi</p><p class="mt-2"><i class="fas fa-phone-alt text-[#c4a27a] mr-2"></i>0334 8592187</p><p><i class="fab fa-facebook text-[#c4a27a] mr-2"></i><a href="https://www.facebook.com/mariasbeautyparlour" target="_blank" class="text-blue-700 hover:underline">Facebook Page</a></p><p><i class="fab fa-whatsapp text-[#c4a27a] mr-2"></i><a href="https://wa.me/923348592187" class="text-green-600 hover:underline">WhatsApp Chat</a></p><p class="mt-4"><strong>Opening Hours:</strong> Mon-Sat 11am – 8pm | Sunday: Closed</p><div class="flex gap-3 mt-6"><a href="https://maps.google.com/?q=W476+P4V+Moon+Garden+St+Block+11+Gulshan-e-Iqbal+Karachi" target="_blank" class="btn-outline"><i class="fas fa-directions"></i> Get Directions</a><a href="tel:03348592187" class="btn-primary">Call Now</a></div></div><div class="rounded-2xl overflow-hidden h-64 md:h-80 shadow-xl"><iframe src="https://maps.google.com/maps?q=W476%2BP4V%2C%20Moon%20Garden%20St%2C%20Block%2011%20Gulshan-e-Iqbal%2C%20Karachi&t=&z=16&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" title="Maria's Beauty Parlour Location"></iframe></div></div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-10 px-6"><div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-8"><div><h3 class="text-2xl font-serif">Maria's Beauty Parlour</h3><p class="text-gray-400 mt-2">Hair & Skin Care | Karachi’s premium beauty destination</p></div><div><h4 class="font-semibold">Quick Links</h4><ul class="mt-2 space-y-1 text-gray-300"><li><a href="#home" class="hover:text-[#c4a27a]">Home</a></li><li><a href="#services" class="hover:text-[#c4a27a]">Services</a></li><li><a href="#gallery" class="hover:text-[#c4a27a]">Gallery</a></li><li><a href="#contact" class="hover:text-[#c4a27a]">Contact</a></li></ul></div><div><div class="flex gap-4 text-2xl"><a href="https://www.facebook.com/mariasbeautyparlour" target="_blank" class="hover:text-[#c4a27a]"><i class="fab fa-facebook"></i></a><a href="https://www.instagram.com/" target="_blank" class="hover:text-[#c4a27a]"><i class="fab fa-instagram"></i></a><a href="https://wa.me/923348592187" target="_blank" class="hover:text-[#c4a27a]"><i class="fab fa-whatsapp"></i></a></div><p class="text-sm text-gray-400 mt-4">© 2025 Maria's Beauty Parlour. Designed with elegance for beauty & skincare.</p></div></div></footer>
+
+  <a href="https://wa.me/923348592187" class="floating-wa text-white" target="_blank"><i class="fab fa-whatsapp text-3xl"></i></a>
+</main>
+
+<script>
+  // Loader
+  window.addEventListener('load', () => { setTimeout(()=>{ document.getElementById('loading').style.opacity='0'; setTimeout(()=>document.getElementById('loading').style.display='none',500); }, 400); });
+  // Mobile menu toggle
+  const menuBtn = document.getElementById('mobileMenuBtn'); const mobileMenu = document.getElementById('mobileMenu');
+  if(menuBtn) menuBtn.addEventListener('click',()=>{ mobileMenu.classList.toggle('hidden'); });
+  // Booking form -> WhatsApp integration
+  const bookingForm = document.getElementById('bookingForm');
+  if(bookingForm){
+    bookingForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('nameReq').value.trim();
+      const phone = document.getElementById('phoneReq').value.trim();
+      if(!name || !phone){ document.getElementById('formMsg').innerText = 'Please provide name and phone number.'; return; }
+      const service = document.getElementById('serviceSelect').value;
+      const date = document.getElementById('datePicker').value;
+      const msg = document.getElementById('msgField').value;
+      const waMsg = `Hello Maria's Beauty! I would like to book an appointment:%0A%0AName: ${encodeURIComponent(name)}%0APhone: ${encodeURIComponent(phone)}%0AService: ${encodeURIComponent(service)}%0ADate: ${date}%0AMessage: ${encodeURIComponent(msg)}`;
+      window.open(`https://wa.me/923348592187?text=${waMsg}`, '_blank');
+      document.getElementById('formMsg').innerHTML = '✅ Redirecting to WhatsApp to confirm booking!';
+      setTimeout(()=> document.getElementById('formMsg').innerText='', 4000);
+    });
+  }
+  // Set min date for date picker
+  const dateInput = document.getElementById('datePicker'); if(dateInput){ const today = new Date().toISOString().split('T')[0]; dateInput.min = today; }
+  // Gallery Modal
+  const modal = document.getElementById('imageModal');
+  const modalImg = document.getElementById('modalImg');
+  const closeModal = document.querySelector('.close-modal');
+  document.querySelectorAll('.gallery-img').forEach(img => {
+    img.addEventListener('click', function() { modal.style.display = 'flex'; modalImg.src = this.getAttribute('data-img'); });
+  });
+  closeModal.onclick = () => modal.style.display = 'none';
+  modal.onclick = (e) => { if(e.target === modal) modal.style.display = 'none'; };
+  // Close mobile menu on link click
+  document.querySelectorAll('#mobileMenu a').forEach(link => link.addEventListener('click', () => mobileMenu.classList.add('hidden')));
+</script>
+</body>
+</html>
